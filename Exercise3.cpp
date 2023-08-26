@@ -8,31 +8,31 @@
 
 using namespace std;
 
-double x1For(int n)
-{
-    double sum=0.0;
-    for ( int i =1; i <= n; ++i)
+double x1For(int n)                                 // This function will calculate the summation using a for loop of the integer entered "n"
+{                                                   // and will perform the stated expression in line 16.
+    double sum=0.0; 
+    for ( int i =1; i <= n; ++i)                    // A for loop that will output the summation of the entered value.
     {
-        sum += static_cast<double>(i)/(i+1);
+        sum += static_cast<double>(i)/(i+1);        // Operation given by the problem statement. 
     }
-    return sum;
+    return sum;                                     // Returns the sum of the summation value after the operation has been executed.
 }
 
-double x1While(int n )
-{
-    double sum=0.0;
-    int i=1;
+double x1While(int n )                              // This function will calculate the summation using a While loop for an integer entered "n"
+{                                                   // and will perform the stated expession in line 27.
+    double sum=0.0;                                 
+    int i=1;                                        // The sum and integer count are declared before the while statement, stating i must be less than or eqaul to n.
     while(i<=n)
     {
-        sum +=static_cast<double>(i)/(i+1);
+        sum +=static_cast<double>(i)/(i+1);         // the sum will equal the summation of n and will execute this expression. 
         i++;
     }
-    return sum;
+    return sum;                                     
 }
 
-double x2For(int n)
-{
-    double sum=0.0;
+double x2For(int n)                                // For this expression we will be outputting two summations one for i and one for j using a for loop
+{                                                  // and a nested for loop.
+    double sum=0.0; 
     for(int i=1; i<=n; ++i)
     {
         for (int j=i; j<=n; ++j)
