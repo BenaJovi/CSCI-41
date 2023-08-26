@@ -186,29 +186,29 @@ int main()
     }
     else
     {
-        double summation= x1For(n);
-        cout<<"When n="<<n<<" x1 For Loop outputs:"<<summation<<endl;
+        double x1summation= x1For(n);
+        cout<<"When n="<<n<<" x1 For Loop outputs:"<<x1summation<<endl;
 
-        double WhileSum=x1While(n);
-        cout<<"When n="<<n<< " x1 While Loop Outputs:"<<WhileSum<<endl;
+        double x1WhileSummation=x1While(n);
+        cout<<"When n="<<n<< " x1 While Loop Outputs:"<<x1WhileSummation<<endl;
 
-        double forProduct= x2For(n);
-        cout<<"When n="<<n<<" x2 For Loop Outputs:"<<forProduct<<endl;
+        double x2forProduct= x2For(n);
+        cout<<"When n="<<n<<" x2 For Loop Outputs:"<<x2forProduct<<endl;
 
-        double whileProduct=x2While(n);
-        cout<<"When n="<<n<<" x2 While Loop Outputs:"<<whileProduct<<endl;
+        double x2whileProduct=x2While(n);
+        cout<<"When n="<<n<<" x2 While Loop Outputs:"<<x2whileProduct<<endl;
 
-        double squareroot=x3For(n);
-        cout<<"When n="<<n<<" x3 For Loop Outputs:"<<squareroot<<endl;
+        double x3squareroot=x3For(n);
+        cout<<"When n="<<n<<" x3 For Loop Outputs:"<<x3squareroot<<endl;
 
-        double whileSqaureRoot=x3While(n);
-        cout<<"When n="<<n<<" x3 While Loop Outputs:"<<whileSqaureRoot<<endl;
+        double x3whileSqaureRoot=x3While(n);
+        cout<<"When n="<<n<<" x3 While Loop Outputs:"<<x3whileSqaureRoot<<endl;
 
-        double ProdSum= x4For(n);
-        cout<<"When n="<<n<<" x4 For Loop Outputs:"<<ProdSum<<endl;
+        double x4ProdSum= x4For(n);
+        cout<<"When n="<<n<<" x4 For Loop Outputs:"<<x4ProdSum<<endl;
 
-        double whileProdSum=x4While(n);
-        cout<<"When n="<<n<<" x4 While Loop Outputs:"<<whileProdSum<<endl;
+        double x4whileProdSum=x4While(n);
+        cout<<"When n="<<n<<" x4 While Loop Outputs:"<<x4whileProdSum<<endl;
 
         double x5forSummation=x5For(n);
         cout<<"When n="<<n<<" x5 For Loop Outputs:"<<x5forSummation<<endl;
