@@ -33,7 +33,6 @@ int main()
     cin>>i;                                                                                                           // Stores the input value of i. 
     TernaryFunction(i);                                                                                               // Executes TernaryFunction with the given value of i.
     IfStatement(i);                                                                                                   // Executes IfStatement with the given value of i.
-   
    return 0;
 }
 
