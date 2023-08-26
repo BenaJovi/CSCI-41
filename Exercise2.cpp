@@ -38,6 +38,8 @@ void IfElseifStatment (int x)                                  // An Else If sta
     cout<<"invalid number"<<endl;
 }
 
+
+
 void SwitchStatement(int x)                                  // The switch statement will test the given value against a list of values until it is true. 
 {                                                            // If the value is not true the default block will be executed. 
     switch (x)
@@ -89,7 +91,7 @@ void SwitchStatement(int x)                                  // The switch state
         case 12:
         cout<<"December using case statement"<<endl;
         break;
-
+        
         default:
         cout<<"invalid number"<<endl;
         }
