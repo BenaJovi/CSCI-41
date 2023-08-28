@@ -91,7 +91,7 @@ void SwitchStatement(int x)                                  // The switch state
         case 12:
         cout<<"December using case statement"<<endl;
         break;
-        
+
         default:
         cout<<"invalid number"<<endl;
         }
@@ -107,5 +107,6 @@ int main ()
     IfElseifStatment(number);                               // Executes If/Else if function using the value inputted by the user.
     SwitchStatement(number);                                // Executes the Switch funtion using the value inputted by the user. 
 }
+
 
 
