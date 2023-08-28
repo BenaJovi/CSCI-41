@@ -5,33 +5,35 @@
 
 #include <iostream>
 #include <cmath>
+#include <cctype>
+
 
 using namespace std;
 
-double x1For(int n)                                 // This function will calculate the summation using a for loop of the integer entered "n"
-{                                                   // and will perform the stated expression in line 16.
-    double sum=0.0; 
-    for ( int i =1; i <= n; ++i)                    // A for loop that will output the summation of the entered value.
+double x1For(int n)                                 // For lines 11-175 are all the functions using a while loop and a for loop.
+{                                                   // Each function will execute a summation of "n" inputted by the user and will
+    double sum=0.0;                                 // perform each expression that is embedd within the function and return the value.
+    for ( int i =1; i <= n; ++i)                    
     {
-        sum += static_cast<double>(i)/(i+1);        // Operation given by the problem statement. 
+        sum += static_cast<double>(i)/(i+1);       
     }
-    return sum;                                     // Returns the sum of the summation value after the operation has been executed.
+    return sum;                                     
 }
 
-double x1While(int n )                              // This function will calculate the summation using a While loop for an integer entered "n"
-{                                                   // and will perform the stated expession in line 27.
+double x1While(int n )                              
+{                                                   
     double sum=0.0;                                 
-    int i=1;                                        // The sum and integer count are declared before the while statement, stating i must be less than or eqaul to n.
+    int i=1;                                        
     while(i<=n)
     {
-        sum +=static_cast<double>(i)/(i+1);         // the sum will equal the summation of n and will execute this expression. 
+        sum +=static_cast<double>(i)/(i+1);         
         i++;
     }
     return sum;                                     
 }
 
-double x2For(int n)                                // For this expression we will be outputting two summations one for i and one for j using a for loop
-{                                                  // and a nested for loop.
+double x2For(int n)                                
+{                                                  
     double sum=0.0; 
     for(int i=1; i<=n; ++i)
     {
@@ -174,19 +176,22 @@ double x5While(int n)
     return sum;
 }
 
-int main()
-{
-    int n;
-    cout<<"Please nter a value for n:";
+char ch;                                                            // Declares character for repeat function. 
+void repeat();                                                      // Protype for repeat function.
+
+int main()                                                          // In the main there is an if else statement that checks if the value of "n" is valid.
+{                                                                   // "n" must be greater than 0.
+    int n;      
+    cout<<"Please enter a value for n:";
     cin>>n;
 
     if (n<=0)
     {
-        cout<<"please enter a positive number"<<endl;
-    }
+        cout<<"please enter a positive number"<<endl;               
+    }                                                               
     else
-    {
-        double x1summation= x1For(n);
+    {                                                                       // If the number entered is valid it will call each function with the number entered 
+        double x1summation= x1For(n);                                       // each function will be executed and will return the output of each function/expression
         cout<<"When n="<<n<<" x1 For Loop outputs:"<<x1summation<<endl;
 
         double x1WhileSummation=x1While(n);
@@ -215,5 +220,31 @@ int main()
 
         double x5whileSummation=x5While(n);
         cout<<"When n="<<n<<" x5 While Loop Outputs:"<<x5whileSummation<<endl;
+        
     }
+    repeat();
+}
+
+void repeat()                                                                  // This function is something I added so you can perform the code multiple times 
+{                                                                              // with one run. But, for some reason if you want to exit the program you
+    do                                                                         // have to enter N, how ever many times you ran the code.  
+    {
+        cout << "\nWould you like to try another equation? (Y/N)\n";
+        cin >> ch;
+        cout << endl;
+        ch = tolower (ch);  //changes ch to lowercase to simplify checks
+        if (ch == 'y')
+        {
+            main();
+            repeat();
+        }
+        //ends program
+        else if (ch == 'n')
+        {
+            break;
+        }
+        //response to invalid entry
+        else
+            cout << "Input not recognized, try again. (Y/N)";
+    }while(!(ch == 'y' || ch == 'n'));
 }
