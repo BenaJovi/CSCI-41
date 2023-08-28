@@ -227,8 +227,8 @@ int main()                                                          // In the ma
 
 void repeat()                                                                  // This function is something I added so you can perform the code multiple times 
 {                                                                              // with one run. But, for some reason if you want to exit the program you
-    do                                                                         // have to enter N, how ever many times you ran the code.  
-    {
+    do                                                                         // have to enter N, how ever many times you ran the code. So if you entered Y 2 times 
+    {                                                                          // you need to enter N 2 times to exit.
         cout << "\nWould you like to try another equation? (Y/N)\n";
         cin >> ch;
         cout << endl;
