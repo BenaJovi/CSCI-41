@@ -29,7 +29,7 @@ void IfStatement (int x)                                                        
 int main()
 {
     int i;                                                                                                            // Declaring the integer i that will be inputted by the user.
-    cout<<"Please enter an integer:";                                                                         // Prompt asking the user to enter a integer value.
+    cout<<"Please enter an integer:";                                                                                 // Prompt asking the user to enter a integer value.
     cin>>i;                                                                                                           // Stores the input value of i. 
     TernaryFunction(i);                                                                                               // Executes TernaryFunction with the given value of i.
     IfStatement(i);                                                                                                   // Executes IfStatement with the given value of i.
