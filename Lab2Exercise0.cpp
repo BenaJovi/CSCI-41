@@ -63,13 +63,13 @@ int main()
     double resultRefference;
 
     double ResultReturn=sumResult(a,b,n,m);
-    cout<<ResultReturn<<endl;
+    cout<<"Result:"<<ResultReturn<<endl;
 
     double PointerResultReturn=pointerSum(a,b,n,m,&resultPointer);
-    cout<<PointerResultReturn<<endl;
+    cout<<"using pointer:"<<PointerResultReturn<<endl;
 
     double ReffResultReturn=ReffernceSumResult(a,b,n,m,resultRefference);
-    cout<<ReffResultReturn<<endl;
+    cout<<"Using reffernce:"<<ReffResultReturn<<endl;
     
     
    

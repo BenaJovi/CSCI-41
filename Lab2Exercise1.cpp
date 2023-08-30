@@ -6,12 +6,23 @@
 #include <iostream>
 using namespace std;
 
-double getMax(double* x, int n);
+double getMax(double* x, int n)
 {
 
 }
-void getMax(double* x, int n, double* Vmax);
+
+
+
+void getMax(double* x, int n, double& vmax)
 {
+    vmax=x[0];
+    for (int i=0; i<n; ++i)
+    {
+        if(x[i]>vmax)
+        {
+            vmax=x[i];
+        }
+    }
 
 }
 
