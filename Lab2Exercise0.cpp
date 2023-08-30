@@ -32,7 +32,7 @@ double pointerSum(double a[], double b[], int n, int m, double* resultPointer)
    return *resultPointer= result;
 }
 
-double ReffernceSumResult(double a[], double b[], int n, int m, double& resultReffernce)
+double ReffernceSumResult(double a[], double b[], int n, int m, double &resultReffernce)
 {
     double result=0.0;
     for (int i=0; i<n; ++i)
@@ -47,16 +47,21 @@ double ReffernceSumResult(double a[], double b[], int n, int m, double& resultRe
 
 int main()
 {
-    int n;      
-    cout<<"Please enter a value for n:";
-    cin>>n;
+    int n=5;      
+    //cout<<"Please enter a value for n:";
+    //cin>>n;
 
-    int m;
-    cout<<"Please enter a value for m:";
-    cin>>m;
+    int m=5;
+    //cout<<"Please enter a value for m:";
+    //cin>>m;
 
-    double a[n];
-    double b[m];
+    double a[5]={1,2,3,4,5};
+    double b[5]={1,2,3,4,5};
+
+    for (int i=1; i<=(n); ++i)
+    {
+        
+    }
 
     double resultReturn;
     double resultPointer;

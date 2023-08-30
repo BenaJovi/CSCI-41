@@ -11,7 +11,10 @@ double getMax(double* x, int n)
 
 }
 
-
+void getMax(double *x, int n, double *vmax)
+{
+    
+}
 
 void getMax(double* x, int n, double& vmax)
 {
