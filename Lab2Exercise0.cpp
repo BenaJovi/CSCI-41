@@ -9,11 +9,11 @@ using namespace std;
 double sumResult(double a[], double b[], int n, int m)
 {
     double result=0.0;
-    for(int i=0; i<n; ++i)
+    for(int i=1; i<n; ++i)
     {
-        for( int j=0;j<m; ++j)
+        for( int j=1;j<m; ++j)
         {
-            result +=(a[i])*(b[j]);
+            result +=(a[i-1])*(b[j-1]);
         }
     }
     return result;
@@ -22,11 +22,11 @@ double sumResult(double a[], double b[], int n, int m)
 double pointerSum(double a[], double b[], int n, int m, double* resultPointer)
 {
     double result=0.0;
-    for (int i=0; i<n; ++i)
+    for (int i=1; i<n; ++i)
     {
-        for (int j=0; j<m; ++j)
+        for (int j=1; j<m; ++j)
         {
-            result+= a[i]*b[j];
+            result+= a[i-1]*b[j-1];
         }
     }
    return *resultPointer= result;
@@ -35,11 +35,11 @@ double pointerSum(double a[], double b[], int n, int m, double* resultPointer)
 double ReffernceSumResult(double a[], double b[], int n, int m, double &resultReffernce)
 {
     double result=0.0;
-    for (int i=0; i<n; ++i)
+    for (int i=1; i<n; ++i)
     {
-        for (int j=0; j<m; ++j)
+        for (int j=1; j<m; ++j)
         {
-            result+= a[i]*b[j];
+            result+= a[i-1]*b[j-1];
         }
     }
     return ref(resultReffernce)=result;
@@ -47,21 +47,28 @@ double ReffernceSumResult(double a[], double b[], int n, int m, double &resultRe
 
 int main()
 {
-    int n=5;      
-    //cout<<"Please enter a value for n:";
-    //cin>>n;
+    int n;      
+    cout<<"Please enter a value for n:";
+    cin>>n;
 
-    int m=5;
-    //cout<<"Please enter a value for m:";
-    //cin>>m;
-
-    double a[5]={1,2,3,4,5};
-    double b[5]={1,2,3,4,5};
-
-    for (int i=1; i<=(n); ++i)
+    int m;
+    cout<<"Please enter a value for m:";
+    cin>>m;
+    cout<<"Enter the values for array a."<<endl;
+    double a[n];
+    for (int i=1; i<=n; ++i)
     {
-        
+        cout<<"Enter a["<<i<<"]: ";
+        cin>>a[i-1];
     }
+    cout<<"Enter the values for array b."<<endl;
+    double b[m];
+     for (int i=1; i<=m; ++i)
+    {
+        cout<<"Enter a["<<i<<"]: ";
+        cin>>b[i-1];
+    }
+
 
     double resultReturn;
     double resultPointer;
