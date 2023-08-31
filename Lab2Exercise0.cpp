@@ -56,6 +56,7 @@ int main()
     cin>>m;
     cout<<"Enter the values for array a."<<endl;
     double a[n];
+
     for (int i=1; i<=n; ++i)
     {
         cout<<"Enter a["<<i<<"]: ";
@@ -63,12 +64,12 @@ int main()
     }
     cout<<"Enter the values for array b."<<endl;
     double b[m];
-     for (int i=1; i<=m; ++i)
+
+    for (int i=1; i<=m; ++i)
     {
         cout<<"Enter a["<<i<<"]: ";
         cin>>b[i-1];
     }
-
 
     double resultReturn;
     double resultPointer;
@@ -83,6 +84,4 @@ int main()
     double ReffResultReturn=ReffernceSumResult(a,b,n,m,resultRefference);
     cout<<"Using reffernce:"<<ReffResultReturn<<endl;
     
-    
-   
 }

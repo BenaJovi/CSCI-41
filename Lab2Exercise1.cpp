@@ -8,13 +8,15 @@ using namespace std;
 
 double getMax(double* x, int n)
 {
-
+   
 }
 
-void getMax(double *x, int n, double *vmax)
+void getMax(int n, double* maxPtr)
 {
     
 }
+
+
 
 void getMax(double* x, int n, double& vmax)
 {
@@ -29,8 +31,19 @@ void getMax(double* x, int n, double& vmax)
 
 }
 
-
 int main()
 {
+    int n;      
+    cout<<"Please enter a value for n:";
+    cin>>n;
 
+     cout<<"Enter the values for array a."<<endl;
+    double a[n];
+
+    for (int i=1; i<=n; ++i)
+    {
+        cout<<"Enter a["<<i<<"]: ";
+        cin>>a[i-1];
+    }
+    
 }
