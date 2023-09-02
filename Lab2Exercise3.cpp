@@ -1,6 +1,13 @@
+/*  Author: Jovani Benavides
+ *  Course: CSCI-41
+ *  Purpose: 
+ *  
+ */
+
 #include <iostream>
 #include <cmath>
 using namespace std;
+
 class Point {
 private:
     double x, y, z;
@@ -64,10 +71,11 @@ public:
 
 int main() 
 {
+    
     // Create Point objects using different constructors
-    Point a; // Default constructor
+    Point a;                // Default constructor
     Point b(1.0, 2.0, 3.0); // Constructor with 3 values
-    Point c = b; // Copy constructor
+    Point c = b;            // Copy constructor
 
     // Access and modify point coordinates
     a.setX(4.0);
