@@ -66,8 +66,8 @@ int main() {
     Point sum = addPoints(pointA, pointB);
     Point difference = subtractPoints(pointA, pointB);
 
-    cout << "Sum of Point A and Point B (x y z): " << sum.x << " " << sum.y << " " << sum.z << endl;
-    cout << "Difference between Point A and Point B (x y z): " << difference.x << " " << difference.y << " " << difference.z << endl;
+    cout << "Sum of Point A and Point B (x y z): (" << sum.x << "," << sum.y << "," << sum.z<<")" << endl;
+    cout << "Difference between Point A and Point B (x y z): (" << difference.x<<"," << difference.y << ","  << difference.z<<")"<< endl;
 
     return 0;
 }
