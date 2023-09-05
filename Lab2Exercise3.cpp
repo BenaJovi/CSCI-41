@@ -28,8 +28,8 @@ public:
      }
 
     // Copy Constructor
-    Point(const Point& other) :
-     x(other.x), y(other.y), z(other.z) 
+    Point(const Point& copy) :
+     x(copy.x), y(copy.y), z(copy.z) 
      {
 
      }
@@ -45,11 +45,11 @@ public:
     void setZ(double zVal) { z = zVal; }
 
     // Function to calculate the distance between two points
-    double distanceBetweenPoints(const Point& other) const 
+    double distanceBetweenPoints(const Point& copy) const 
     {
-        double dx = other.x - x;
-        double dy = other.y - y;
-        double dz = other.z - z;
+        double dx = copy.x - x;
+        double dy = copy.y - y;
+        double dz = copy.z - z;
         return sqrt(dx * dx + dy * dy + dz * dz);
     }
 
@@ -60,16 +60,16 @@ public:
     }
 
     // Overload the + operator to add two points
-    Point operator+(const Point& other) 
+    Point operator+(const Point& copy) 
     const 
     {
-        return Point(x + other.x, y + other.y, z + other.z);
+        return Point(x + copy.x, y + copy.y, z + copy.z);
     }
 
     // Overload the - operator to subtract two points
-    Point operator-(const Point& other) const 
+    Point operator-(const Point& copy) const 
     {
-        return Point(x - other.x, y - other.y, z - other.z);
+        return Point(x - copy.x, y - copy.y, z - copy.z);
     }
 };
 
@@ -77,14 +77,14 @@ int main()
 {
     
     // Create Point objects using different constructors
-    
+
     Point a;                // Default constructor
     Point b(1.0, 2.0, 3.0); // Constructor with 3 values
     Point c = b;            // Copy constructor
 
     // Access and modify point coordinates
-    a.setX(4.0);
-    a.setY(5.0);
+    a.setX(2.0);
+    a.setY(4.0);
     a.setZ(6.0);
 
     // Calculate and display distances
