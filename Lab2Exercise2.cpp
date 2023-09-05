@@ -14,7 +14,8 @@ struct Point {
 };
 
 // Function to calculate the distance between two points
-double distanceBetweenPoints(const Point& a, const Point& b) {
+double distanceBetweenPoints(const Point& a, const Point& b) 
+{
     double dx = b.x - a.x;
     double dy = b.y - a.y;
     double dz = b.z - a.z;
@@ -22,12 +23,14 @@ double distanceBetweenPoints(const Point& a, const Point& b) {
 }
 
 // Function to calculate the distance between a point and the origin
-double distanceToOrigin(const Point& p) {
+double distanceToOrigin(const Point& p) 
+{
     return sqrt(p.x * p.x + p.y * p.y + p.z * p.z);
 }
 
 // Function to add two points
-Point addPoints(const Point& a, const Point& b) {
+Point addPoints(const Point& a, const Point& b) 
+{
     Point result;
     result.x = a.x + b.x;
     result.y = a.y + b.y;
@@ -36,7 +39,8 @@ Point addPoints(const Point& a, const Point& b) {
 }
 
 // Function to subtract two points
-Point subtractPoints(const Point& a, const Point& b) {
+Point subtractPoints(const Point& a, const Point& b) 
+{
     Point result;
     result.x = a.x - b.x;
     result.y = a.y - b.y;
@@ -44,14 +48,15 @@ Point subtractPoints(const Point& a, const Point& b) {
     return result;
 }
 
-int main() {
+int main() 
+{
     Point pointA, pointB;
 
     // Input coordinates for two points
-    cout << "Enter coordinates for Point A (x y z): ";
+    cout << "Enter coordinates for Point A (x y z): "<<endl;
     cin >> pointA.x >> pointA.y >> pointA.z;
 
-    cout << "Enter coordinates for Point B (x y z): ";
+    cout << "Enter coordinates for Point B (x y z): "<<endl;
     cin >> pointB.x >> pointB.y >> pointB.z;
 
     // Calculate and display the distances
