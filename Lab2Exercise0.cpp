@@ -19,30 +19,30 @@ double sumResult(double a[], double b[], int n, int m)
     return result;
 }
 
-double pointerSum(double a[], double b[], int n, int m, double* resultPointer)
+void pointerSum(double a[], double b[], int n, int m, double* resultPointer)
 {
-    double result=0.0;
+    *resultPointer=0.0;
     for (int i=1; i<n; ++i)
     {
         for (int j=1; j<m; ++j)
         {
-            result+= a[i-1]*b[j-1];
+            *resultPointer+= a[i-1]*b[j-1];
         }
     }
-   return *resultPointer= result;
+   
 }
 
-double ReffernceSumResult(double a[], double b[], int n, int m, double &resultReffernce)
+void ReffernceSumResult(double a[], double b[], int n, int m, double &resultReffernce)
 {
-    double result=0.0;
+    resultReffernce=0.0;
     for (int i=1; i<n; ++i)
     {
         for (int j=1; j<m; ++j)
         {
-            result+= a[i-1]*b[j-1];
+            resultReffernce+= a[i-1]*b[j-1];
         }
     }
-    return ref(resultReffernce)=result;
+    
 }
 
 int main()
@@ -78,10 +78,13 @@ int main()
     double ResultReturn=sumResult(a,b,n,m);
     cout<<"Result:"<<ResultReturn<<endl;
 
-    double PointerResultReturn=pointerSum(a,b,n,m,&resultPointer);
-    cout<<"using pointer:"<<PointerResultReturn<<endl;
+    double pointerTest;
+    pointerSum(a,b,n,m,&pointerTest);
+    cout<<"using pointer:"<<pointerTest<<endl;
 
-    double ReffResultReturn=ReffernceSumResult(a,b,n,m,resultRefference);
-    cout<<"Using reffernce:"<<ReffResultReturn<<endl;
+    double ReffReturnTest;
+    
+    ReffernceSumResult(a,b,n,m,ReffReturnTest);
+    cout<<"Using reffernce:"<<ReffReturnTest<<endl;
     
 }

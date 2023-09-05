@@ -4,62 +4,51 @@
  *  
  */
 #include <iostream>
-#include <string.h>
-#include <stdio.h>
+
 using namespace std;
 
-double getMax(int n, double* x)
+double ReturnGetmax(double* x, int n) 
 {
-    double Vmax=*x;
-    for(int i=1; i<n; ++i)
-    {
-        if(Vmax< *(x+i))
-        {
-            Vmax= *(x+i);
+    double vmax = x[0];
+    for (int i = 1; i < n; ++i) {
+        if (x[i] > vmax) {
+            vmax = x[i];
         }
     }
-    return Vmax;
+    return vmax;
 }
 
 void PointergetMax(int n, double* x, double* vmax)
 {
-    *vmax=*x;
+    *vmax= x[0];
     for(int i=1; i<n; ++i)
     {
-        if(*vmax< *(x+i))
+        if(x[i]> *vmax)
         {
-            *vmax= *(x+i);
+            *vmax= x[i];
         }
     }
     
 }
 
-
-void ReffgetMax(double* x, int n, double& vmax)
+void ReffGetMax(double* x, int n, double& vmax) 
 {
-    vmax= *x;
-    for(int i=1; i<n; ++i)
-    {
-        if(vmax< *(x+i))
-        {
-            vmax= *(x+i);
+    vmax = x[0];
+    for (int i = 1; i < n; ++i) {
+        if (x[i] > vmax) {
+            vmax = x[i];
         }
     }
-
 }
 
 int main()
 {
-    double *x;
     int n;    
-    double reffvmax;
-    double* PointerSum;
     cout<<"Please enter a value for n:";
     cin>>n;
+    cout<<"Enter the values for array a."<<endl;
 
-     cout<<"Enter the values for array a."<<endl;
-    double a[n];
-    x=a;
+    double* a= new double[n];
 
     for (int i=1; i<=n; ++i)
     {
@@ -71,19 +60,23 @@ int main()
     for (int j=0; j<n; ++j)
     {
         if (n==1){cout <<a[j];break;}
-        cout<<a[j]<<", ";
+        cout<<a[j]<<",";
     }
     cout<<"]"<<endl;
 
-    cout<<"vmax="<<getMax(n,x)<<endl;
+    double max1 = ReturnGetmax(a, n);
 
-    ReffgetMax(x,n,reffvmax);
-    cout<<"reffVmax="<<reffvmax<<endl;
+    double max2;
+    PointergetMax(n,a,&max2); 
 
-    PointergetMax(n,x,PointerSum);
-    cout<<"pointer vmax="<<PointerSum;
+    double max3;
+    ReffGetMax(a, n, max3); 
 
+    cout << "Maximum value (using return): " << max1 << endl;
+    cout << "Maximum value (using pointer): " << max2 << endl;
+    cout << "Maximum value (using reference): " << max3 << endl;
 
+    delete[] a;
     return 0;
     
 }

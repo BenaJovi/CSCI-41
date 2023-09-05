@@ -8,13 +8,17 @@
 #include <cmath>
 using namespace std;
 
-class Point {
+class Point 
+{
 private:
     double x, y, z;
 
 public:
     // Default Constructor
-    Point() : x(0.0), y(0.0), z(0.0) {}
+    Point() : x(0.0), y(0.0), z(0.0) 
+    {
+
+    }
 
     // Constructor with 3 values
     Point(double xVal, double yVal, double zVal) :
@@ -73,6 +77,7 @@ int main()
 {
     
     // Create Point objects using different constructors
+    
     Point a;                // Default constructor
     Point b(1.0, 2.0, 3.0); // Constructor with 3 values
     Point c = b;            // Copy constructor
