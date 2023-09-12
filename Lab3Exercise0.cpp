@@ -236,10 +236,10 @@ int main()
     cout << "using return:"<<myArray.Search4(x) << endl; 
 
     // IsAllEven methods
-    cout <<"Checks if all elements int the array are even using For Loop:"<< myArray.IsAllEven1() << endl; 
-    cout <<"Checks if all elements int the array are even using While Loop:"<< myArray.IsAllEven2() << endl; 
-    cout << "Checks if all elements int the array are even using Do While Loop:"<<myArray.IsAllEven3() << endl; 
-    cout << "Checks if all elements int the array are even using Recursive:"<<myArray.IsAllEven4() << endl;
+    cout <<"Checks if all elements in the array are even using For Loop:"<< myArray.IsAllEven1() << endl; 
+    cout <<"Checks if all elements in the array are even using While Loop:"<< myArray.IsAllEven2() << endl; 
+    cout << "Checks if all elements in the array are even using Do While Loop:"<<myArray.IsAllEven3() << endl; 
+    cout << "Checks if all elements in the array are even using Recursive:"<<myArray.IsAllEven4() << endl;
 
     // FindIndicesOfValue
     cout<<"The index where x is located in the array"<<endl;
