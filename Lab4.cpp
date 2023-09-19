@@ -115,70 +115,100 @@ bool isPrime(int n, int divisor = 2)
 
 int main()
 {
-    /*
-    //Q1
-    cout<<"the natural numbers are: "<<endl;
-    printNaturalNumbers(10);
-    cout<<endl;
-    //Q2
-    cout << "The Factorial of number 5 is: " << calculateFactorial(5) << endl;
     
+    //Q1
+    cout<<"Question 1:"<<endl;
+    cout<<"This will print all the natural numbers leading up to 7"<<endl;
+    cout<<"the natural numbers are: "<<endl;
+    printNaturalNumbers(7);
+    cout<<endl;
+    cout<<"****************"<<endl;
+
+    //Q2
+    cout<<"Question 2:"<<endl;
+    cout << "The Factorial of number 5 is: " << calculateFactorial(5) << endl;
+    cout<<"****************"<<endl;
+
     //Q3
+    cout<<"Question 3:"<<endl;
+    cout<<"This will print the fibonacci sequence for the number you enter."<<endl;
+
     int num;
-    cout<<"enter num:";
-    cin>>num;
-    cout << "The Series for "<<num<<" is : ";
-    printFibonacci(num);*/
-
-    //Q4
-    //int arr[] = {1, 2, 3, 4, 5};
-    //int size = sizeof(arr) / sizeof(arr[0]);
-    //cout << "Array elements: ";
-    //printArray(arr, size, 0);
-
-    //Q5
-    //int number;
-    //cout << "Enter a number: ";
-    //cin >> number;
-    //int numDigits = countDigits(number);
-    //cout << "The number of digits in the number " << number << " is: " << numDigits << endl;
-
-    //Q6
-    //int num1, num2;
-    //cout << "Enter first number: ";
-    //cin >> num1;
-    //cout << "Enter second number: ";
-    //cin >> num2;
-    //int result = gcd(num1, num2);
-    //cout << "The GCD of " << num1 << " and " << num2 << " is: " << result << endl;
-
-    //Q8
-    //int arr[] = {12, 45, 67, 89, 344, 100, 56};
-    //int size = sizeof(arr) / sizeof(arr[0]);
-    //int largest = findLargest(arr, size);
-    //cout << "The largest element in the array is: " << largest << endl;
-
-    //Q9
-    //int decimal;
-    //cout << "Enter a decimal number: ";
-    //cin >> decimal;
-    //string binary = decimalToBinary(decimal);
-    //cout << "Binary representation: " << binary << endl;
-
-    //Q10
-    int num;
-
     cout << "Enter a positive integer: ";
     cin >> num;
+    cout << "The Series using the fibonacci sequence for "<<num<<" is : ";
+    printFibonacci(num);
+    cout<<"****************"<<endl;
 
-    if (num < 2) {
-        cout << num << " is not a prime number." << endl;
-    } else {
-        if (isPrime(num)) {
-            cout << num << " is a prime number." << endl;
-        } else {
-            cout << num << " is not a prime number." << endl;
+    //Q4
+    cout<<"Question 4:"<<endl;
+    int arr1[] = {1, 2, 3, 4, 5};
+    int size1 = sizeof(arr1) / sizeof(arr1[0]);
+    cout << "Array elements: ";
+    printArray(arr1, size1, 0);
+    cout<<endl;
+    cout<<"****************"<<endl;
+
+    //Q5
+    cout<<"Question 5:"<<endl;
+    int number;
+    cout << "Enter a number you would like how many digits are in that number: ";
+    cin >> number;
+    int numDigits = countDigits(number);
+    cout << "The number of digits in the number " << number << " is: " << numDigits << endl;
+    cout<<"****************"<<endl;
+
+    //Q6
+    cout<<"Question 6:"<<endl;
+    int num1, num2;
+    cout<<"You will be able to find the GCD of two numbers"<<endl;
+    cout << "Enter first number: ";
+    cin >> num1;
+    cout << "Enter second number: ";
+    cin >> num2;
+    int result = gcd(num1, num2);
+    cout << "The GCD of " << num1 << " and " << num2 << " is: " << result << endl;
+    cout<<"****************"<<endl;
+
+    //Q8
+    cout<<"Question 8:"<<endl;
+    int arr[] = {12, 45, 67, 89, 344, 100, 56};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int largest = findLargest(arr, size);
+    cout << "The largest element in the array is: " << largest << endl;
+    cout<<"****************"<<endl;
+
+
+    //Q9
+    cout<<"Question 9:"<<endl;
+    int decimal;
+    cout<<"converts decimal numbers into binary numbers."<<endl;
+    cout << "Enter a decimal number: ";
+    cin >> decimal;
+    string binary = decimalToBinary(decimal);
+    cout << "Binary representation: " << binary << endl;
+    cout<<"****************"<<endl;
+    
+    //Q10
+    cout<<"Question 10:"<<endl;
+    int Primenumber;
+    cout<<"Enter a positive integer to check if it is a prime number:";
+    cin>>Primenumber;
+    if (Primenumber < 2) 
+    {
+        cout << Primenumber << " is not a prime number." << endl;
+    } 
+    else 
+    {
+        if (isPrime(Primenumber)) 
+        {
+            cout << Primenumber << " is a prime number." << endl;
+        } 
+        else 
+        {
+            cout << Primenumber << " is not a prime number." << endl;
         }
     }
+    cout<<"****************"<<endl;
     return 0;
 }
