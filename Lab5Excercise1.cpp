@@ -129,7 +129,7 @@ void MyQueue::DisplayAll() {
 }
 
 int main() {
-    // Create a queue with default capacity (10)
+    // queue with default capacity 
     MyQueue queue1;
 
     // Enqueue elements into the queue
@@ -141,7 +141,7 @@ int main() {
     cout << "Queue 1: ";
     queue1.DisplayQueue();
 
-    // Create a queue with capacity of 3
+    // Create a queue with capacity 
     MyQueue queue2(4);
 
     // Enqueue elements into the second queue
@@ -149,7 +149,7 @@ int main() {
     queue2.Enqueue(6);
     queue2.Enqueue(9);
 
-    // Try to enqueue one more element (should throw an error)
+    // Try to enqueue one more element 
     try {
         queue2.Enqueue(12);
     }
@@ -166,7 +166,7 @@ int main() {
         cout << "Dequeued: " << queue2.Dequeue() << endl;
     }
 
-    // Try to dequeue from an empty queue (should throw an error)
+    // Try to dequeue from an empty queue 
     try {
         queue2.Dequeue();
     }
