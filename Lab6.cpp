@@ -24,35 +24,37 @@ void bubbleSort(int arr[], int n )
         if (count==0)
         return;
         bubbleSort(arr, n-1);
-    
-
 }
-// selection sort
-/*int minIndex(int a[], int i, int j)
+// Selection sort 
+void selectionSort(int arr[], int n)
 {
-    if(i==j)
-    return i;
+    int i, j, min_idx;
 
-    int k =minIndex(a, i+1,j);
-    return (a[i]<a[k])? i:k;
+    for (i = 0; i < n - 1; i++) {
+        min_idx = i;
+        for (j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx])
+                min_idx = j;
+        }
+        if (min_idx != i)
+            swap(arr[min_idx], arr[i]);
+    }
 }
-void selectionSort(int a[],int n, int index=0)
+// Insertion Sort
+void insertionSort(int arr[], int n)
 {
-    if (index==0)
-    return;
-   int k= minIndex(a, index, n-1);
-   if (k !=index)
-   swap(a[k],a[index]);
-   selectionSort(a,n,index+1);
-
-}*/
-
-
-
-// insertion sort
-
-
-
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+// Print array function
 void printArray(int arr[], int n)
 {
     for (int i=0; i < n; i++)
@@ -66,7 +68,7 @@ int main()
    int arr[size];
    cout<<"Array size is set to 10"<<endl;
    for(int i=0;i<size;i++)
-    arr[i]=rand()%10; 
+    arr[i]=rand()%100; 
    cout<<"Elements of the array:"<<endl;
    for(int i=0;i<size;i++)
    cout<<"Elements no "<<i+1<<":"<<arr[i]<<endl;
@@ -74,12 +76,16 @@ int main()
     int n = sizeof(arr)/sizeof(arr[0]); 
     
     bubbleSort(arr, n);                                //bubble sort
-    cout<<"sorted array using bubble sort:"<<endl;
+    cout<<"Sorted using bubble sort:"<<endl;
     printArray(arr,n);
    
-    /*selectionSort(arr,n);
-    cout<<"Sorted:"<<endl;
-    printArray(arr,n);*/
+    selectionSort(arr,n);
+    cout<<"Sorted using selection sort:"<<endl;        // selection sort
+    printArray(arr,n);
+
+    insertionSort(arr,n);
+    cout<<"Sorted using insertion sort"<<endl;         // insertion sort
+    printArray(arr,n);
 
    return 0;
 }
