@@ -2,11 +2,10 @@
 using namespace std;
 
 
-class Node{
-    public:
+struct Node{
     int value;
-    Node* next;
-    Node* previous;
+   struct Node* next;
+   struct Node* previous;
 };
 
 void printFoward(Node*head)
@@ -19,13 +18,10 @@ void printFoward(Node*head)
 
 }
 
-void printBackward(Node*tail)
-{
-    Node* traverse=tail;
-    while(traverse!=nullptr){
-        cout<<traverse->value<<endl;
-        traverse=traverse->previous;
-    }
+
+
+
+void delteNode(){
 
 }
 
@@ -63,7 +59,7 @@ int main()
     tail=node;
 
     printFoward(head);
-    printBackward(tail);
+    //printBackward(tail);
 
     return 0;
 }
