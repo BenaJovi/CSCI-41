@@ -43,7 +43,7 @@ void printArray(int arr[], int n)
  
 int main() 
 { 
-    const int n = 1000000; 
+    const int n = 100; 
     int arr[n]; 
     generateRandomArray(arr, n); 
  
