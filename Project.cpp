@@ -46,7 +46,7 @@ int main()
     const int n = 100; 
     int arr[n]; 
     generateRandomArray(arr, n); 
- 
+  
     clock_t start_time, end_time; 
  
     // Measure the time taken by bubble sort 
