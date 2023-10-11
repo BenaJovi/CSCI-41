@@ -46,7 +46,7 @@ int main()
     node-> next=nullptr;
     node-> previous= tail;
     tail->next=node;
-    tail=node;
+    tail=node; 
 
     node=new Node();
     node-> value = 6;
