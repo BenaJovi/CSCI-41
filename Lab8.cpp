@@ -1,196 +1,150 @@
-/*  Author: Jovani Benavides
- *  Course: CSCI-41
- *
- *
- */
-
-#include<iostream>
+// C++ implementation to remove duplicates from an
+// unsorted doubly linked list
+#include <iostream>
 
 using namespace std;
 
-class Node {
-
-    public:
-    int data;
-    Node* next;
-    Node* prev;
-    Node (int arg_data) : data (arg_data), next (nullptr), prev (nullptr)
-    {}
+// a node of the doubly linked list
+struct Node {
+	int data;
+	struct Node* next;
+	struct Node* prev;
 };
 
-class DoublyLinkedList {
+// Function to delete a node in a Doubly Linked List.
+// head_ref --> pointer to head node pointer.
+// del --> pointer to node to be deleted.
+void deleteNode(struct Node** head_ref, struct Node* del)
+{
+	// base case
+	if (*head_ref == NULL || del == NULL)
+		return;
 
-    private:
-    Node * head;
-    public:
+	// If node to be deleted is head node
+	if (*head_ref == del)
+		*head_ref = del->next;
 
-    DoublyLinkedList () {
-        head = nullptr;
-    }
+	// Change next only if node to be deleted
+	// is NOT the last node
+	if (del->next != NULL)
+		del->next->prev = del->prev;
 
-    // Return the head node.
-    Node * GetHead () {
-        return head;        
-    }
+	// Change prev only if node to be deleted
+	// is NOT the first node
+	if (del->prev != NULL)
+		del->prev->next = del->next;
 
-    // Create a head node of the doubly linked list.
-    void CreateHead (int data) {
-        head = new Node(data); 
-    }
+	// Finally, free the memory occupied by del
+	free(del);
+}
 
-    // Insert a new node into the doubly-linked list after the first found node.
-    void Insert (int data, int after) {
+// function to remove duplicates from
+// an unsorted doubly linked list
+void removeDuplicates(struct Node** head_ref)
+{
+	// if DLL is empty or if it contains only
+	// a single node
+	if ((*head_ref) == NULL || 
+		(*head_ref)->next == NULL)
+		return;
 
-        Node* current = head;
+	struct Node* ptr1, *ptr2;
 
-        // Traverse the linked list till the node is found after 
-        // which the data is to be insert
-        while (current != nullptr && current->data != after) {
-            current = current->next;
-        }
+	// pick elements one by one
+	for (ptr1 = *head_ref; ptr1 != NULL; ptr1 = ptr1->next) {
+		ptr2 = ptr1->next;
 
-        if (current != nullptr) {
-            Node * temp = new Node(data);
-            // Save the location of node after current in next_node.
-            Node * next_node = current->next;
-            // Point current's link to the new node to be inserted.
-            current->next = temp;
+		// Compare the picked element with the
+		// rest of the elements
+		while (ptr2 != NULL) {
 
-            // Point new node's next link (to the next node location previously stored).
-            // left link to the current node.
-            temp->prev  = current;
-            temp->next = next_node;
+			// if duplicate, then delete it
+			if (ptr1->data == ptr2->data) {
 
-            // Point next node's prev to the newly added node i.e temp.
-            if (next_node != nullptr)
-                next_node->prev = temp;
-        }
-    }
+				// store pointer to the node next to 'ptr2'
+				struct Node* next = ptr2->next;
 
-    // Delete the first node matching the data from the doubly linked list.
-    void Delete (int data_to_be_deleted ) {
+				// delete node pointed to by 'ptr2'
+				deleteNode(head_ref, ptr2);
 
-        // If the head node is to be deleted, then the node to the next of head becomes the head node.
-        if (head->data == data_to_be_deleted ) {
-            Node * temp = head->next;
-            delete head;
-            head = temp;
-            head->prev = nullptr;
-        } else {
-            Node * current = head;
-            while (current->data != data_to_be_deleted ) {
-                current = current->next;
-            }
-            // current is to be deleted.
-            if (current != nullptr) {
-                current->prev->next = current->next; // Update the next link of the node previous of current
-                if (current->next != nullptr) {
-                    current->next->prev = current->prev; // Update the previous link of the node to the next of current
-                }
-                delete current;
-            }
-        }
-    }
+				// update 'ptr2'
+				ptr2 = next;
+			}
 
-    // Append a node to the doubly linked list.
-    void Append (int data) {
+			// else simply move to the next node
+			else
+				ptr2 = ptr2->next;
+		}
+	}
+}
 
-        Node* current = head;
-        while (current->next != nullptr) {
-            current = current->next;
-        }
-        Node* temp = new Node(data);
-        current->next = temp;
-        temp->prev = current;
-    }
+// Function to insert a node at the beginning
+// of the Doubly Linked List
+void push(struct Node** head_ref, int new_data)
+{
+	// allocate node
+	struct Node* new_node = 
+		(struct Node*)malloc(sizeof(struct Node));
 
-    // Display all the nodes in the doubly linked list.
-    void Display () {
+	// put in the data
+	new_node->data = new_data;
 
-        Node* current = head;
-        cout << "[ ";
-        while (current != nullptr) {
-            cout << current->data << " ";
-            current = current->next;
-        }
-        cout << "]";
-    }
+	// since we are adding at the beginning,
+	// prev is always NULL
+	new_node->prev = NULL;
 
-    // Free the linked list.
-    void FreeList () {
+	// link the old list of the new node
+	new_node->next = (*head_ref);
 
-        while (head != nullptr) {
-            Node * temp = head->next;
-            delete head;
-            head = temp;
-        }
-    }
-};
+	// change prev of head node to new node
+	if ((*head_ref) != NULL)
+		(*head_ref)->prev = new_node;
 
-int main() {
+	// move the head to point to the new node
+	(*head_ref) = new_node;
+}
 
-    DoublyLinkedList s;
-    int data, after, opt = 0;
+// Function to print nodes in a given doubly 
+// linked list
+void printList(struct Node* head)
+{
+	// if list is empty
+	if (head == NULL)
+		cout << "Doubly Linked list empty";
 
-    while (opt != 5) {
-        cout << "\n\nOptions" << endl;
-        cout << "0. Create head." << endl;
-        cout << "1. Insert node." << endl;
-        cout << "2. Append node." << endl;
-        cout << "3. Delete node." << endl;
-        cout << "4. Free the linked list." << endl;
-        cout << "5. Exit." << endl;
-        cout << "Enter Option : ";
-        cin >> opt;
-        switch (opt) {
+	while (head != NULL) {
+		cout << head->data << " ";
+		head = head->next;
+	}
+}
 
-        case 0:
-            cout << "Linked list ";
-            s.Display();
-            if (s.GetHead() != nullptr) {
-                cout << "\nHead exist." << endl;
-            } else {
-                cout << "\nEnter head node (data) : ";
-                cin >> data;
-                s.CreateHead(data);
-                s.Display();
-            }
-            break;
+// Driver program to test above
+int main()
+{
+	struct Node* head = NULL;
 
-        case 1:
-            cout << "Linked list ";
-            s.Display();
-            cout << "\nEnter new node (data) : ";
-            cin >> data;
-            cout << "After node : ";
-            cin >> after;
-            s.Insert(data, after);
-            s.Display();
-            break;
+	// Create the doubly linked list:
+	// 8<->4<->4<->6<->4<->8<->4<->10<->12<->12
+	push(&head, 12);
+	push(&head, 12);
+	push(&head, 10);
+	push(&head, 4);
+	push(&head, 8);
+	push(&head, 4);
+	push(&head, 6);
+	push(&head, 4);
+	push(&head, 4);
+	push(&head, 8);
 
-        case 2:
-            cout << "Linked list ";
-            s.Display();
-            cout << "\nEnter new node (data) : ";
-            cin >> data;
-            s.Append(data);
-            s.Display();
-            break;
+	cout << "Original Doubly linked list:\n";
+	printList(head);
 
-        case 3:
-            cout << "Linked list ";
-            s.Display();
-            cout << "\nEnter node (data) to be deleted : ";
-            cin >> data;
-            s.Delete(data);
-            s.Display();
-            break;
+	/* remove duplicate nodes */
+	removeDuplicates(&head);
 
-        case 4:
-            cout << "Freeing the linked list." << endl;
-            s.FreeList();
-            break;
-        }
-    }
-    return 0;
+	cout << "\nDoubly linked list after "
+			"removing duplicates:\n";
+	printList(head);
+
+	return 0;
 }
