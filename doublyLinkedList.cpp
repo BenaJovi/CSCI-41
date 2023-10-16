@@ -81,7 +81,8 @@ void removeDuplicates(struct Node** head_ref)
 	}
 }
 
-void getCount(Node* head) {
+void getCount(Node* head)
+{
     Node* current = head;
     int count=0;
     while (current) {
