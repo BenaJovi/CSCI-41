@@ -252,12 +252,8 @@ int main() {
             if (returnToAlgorithmMenu) {
                 break;
             }
-
-            for (int type : arrayTypes) {
-                arr.resize(arraySize);
-                generateArray(arr, type);
-                spacer();
-            switch(arraySize){
+            switch(arraySize)
+            {
                 case 1: arraySize=10000;
                         break;
                 case 2: arraySize=100000;
@@ -265,6 +261,10 @@ int main() {
                 case 3: arraySize=1000000;
                         break;
             }
+            for (int type : arrayTypes) {
+                arr.resize(arraySize);
+                generateArray(arr, type);
+                spacer();
                 cout << "Array Size: " << arraySize << ", Sorting Algorithm: " << chosenAlgorithm << ", Array Type: " << type << endl;
                 cout << "Before Sorting:" << endl;
                 printArray(arr, 10, 10);
@@ -273,7 +273,7 @@ int main() {
                 start_time = clock();             
 
                 switch(chosenAlgorithm) {
-                    case 1: // Insertion Sort            
+                    case 1: //  Insertion Sort            
                         cout << "Using Insertion Sort:" << endl;
                         start_time = clock(); 
                         insertionSort(copy);
