@@ -1,3 +1,9 @@
+/*  Author: Jovani Benavides
+ *  Course: CSCI-41
+ *  Purpose: 
+ *  
+ */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -303,7 +309,6 @@ int main() {
                         cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
                         break;
                 }
-
                 end_time = clock(); 
 
                 cout << "After Sorting:" << endl;
@@ -315,9 +320,7 @@ int main() {
             }
         }
     }
-
     endOfCode();
-
     return 0;
 }
 
