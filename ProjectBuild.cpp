@@ -232,7 +232,7 @@ int main()
     const int sortingAlgorithms[] = {1, 2, 3, 4, 5}; // Sorting Algorithms
     const int arrayTypes[] = {1, 2, 3, 4}; // Array Types
     clock_t start_time, end_time; 
-
+ 
     cout<<"Enter the Size of the array:";
     cin>> arraySize;     
 
