@@ -279,7 +279,7 @@ int main() {
                         insertionSort(copy);
                         end_time = clock();
                         cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
-                        break;
+                        break; 
                     case 2: // Selection Sort
                         cout << "Using Selection Sort:" << endl;
                         start_time = clock(); 
