@@ -194,6 +194,34 @@ void endOfCode(){
     return;
 }
 
+void printMainMenu() {
+    cout << "Main Menu:" << endl;
+    cout << "1. Choose Sorting Algorithm" << endl;
+    cout << "2. Choose Array Size" << endl;
+    cout << "0. Exit Program" << endl;
+    cout << "Enter your choice: ";
+}
+
+void printSortingMenu() {
+    cout << "\nSorting Algorithm Menu:" << endl;
+    cout << "1. Insertion Sort" << endl;
+    cout << "2. Selection Sort" << endl;
+    cout << "3. Bubble Sort" << endl;
+    cout << "4. Quick Sort" << endl;
+    cout << "5. Merge Sort" << endl;
+    cout << "0. Return to Main Menu" << endl;
+    cout << "Enter your choice: ";
+}
+
+void printArraySizeMenu() {
+    cout << "\nArray Size Menu:" << endl;
+    cout << "1. Array Size 100" << endl;
+    cout << "2. Array Size 500" << endl;
+    cout << "3. Array Size 1000" << endl;
+    cout << "0. Return to Main Menu" << endl;
+    cout << "Enter your choice: ";
+}
+
 int main()
 
 {  
