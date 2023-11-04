@@ -1,20 +1,10 @@
-/*  Author: Jovani Benavides
- *  Course: CSCI-41
- *  Purpose: 
- *  
- */
-
 #include <iostream>
-#include <vector>
-#include <algorithm>
 #include <random>
 #include <ctime>
 #include <iomanip>
 using namespace std;
 
-// Sorting Algorithms
-void insertionSort(vector<int>& arr) {
-    int n = arr.size();
+void insertionSort(int arr[], int n) {
     for (int i = 1; i < n; ++i) {
         int key = arr[i];
         int j = i - 1;
@@ -26,8 +16,7 @@ void insertionSort(vector<int>& arr) {
     }
 }
 
-void selectionSort(vector<int>& arr) {
-    int n = arr.size();
+void selectionSort(int arr[], int n) {
     for (int i = 0; i < n-1; i++) {
         int minIndex = i;
         for (int j = i+1; j < n; j++) {
@@ -38,8 +27,7 @@ void selectionSort(vector<int>& arr) {
     }
 }
 
-void bubbleSort(vector<int>& arr) {
-    int n = arr.size();
+void bubbleSort(int arr[], int n) {
     for (int i = 0; i < n-1; i++) {
         for (int j = 0; j < n-i-1; j++) {
             if (arr[j] > arr[j+1]) {
@@ -49,7 +37,7 @@ void bubbleSort(vector<int>& arr) {
     }
 }
 
-int partition(vector<int>& arr, int low, int high) {
+int partition(int arr[], int low, int high) {
     int pivot = arr[high];
     int i = (low - 1);
     for (int j = low; j <= high-1; j++) {
@@ -62,7 +50,7 @@ int partition(vector<int>& arr, int low, int high) {
     return (i + 1);
 }
 
-void quickSort(vector<int>& arr, int low, int high) {
+void quickSort(int arr[], int low, int high) {
     if (low < high) {
         int pi = partition(arr, low, high);
         quickSort(arr, low, pi - 1);
@@ -70,12 +58,12 @@ void quickSort(vector<int>& arr, int low, int high) {
     }
 }
 
-void merge(vector<int>& arr, int left, int mid, int right) {
+void merge(int arr[], int left, int mid, int right) {
     int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    vector<int> L(n1), R(n2);
+    int L[n1], R[n2];
 
     for (i = 0; i < n1; i++)
         L[i] = arr[left + i];
@@ -110,7 +98,7 @@ void merge(vector<int>& arr, int left, int mid, int right) {
     }
 }
 
-void mergeSort(vector<int>& arr, int left, int right) {
+void mergeSort(int arr[], int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
 
@@ -120,8 +108,8 @@ void mergeSort(vector<int>& arr, int left, int right) {
         merge(arr, left, mid, right);
     }
 }
-void shuffleTenPercent(vector<int>& arr) {
-    int n = arr.size();
+
+void shuffleTenPercent(int arr[], int n) {
     int shuffleCount = n * 0.1;
 
     random_device rd;
@@ -133,10 +121,8 @@ void shuffleTenPercent(vector<int>& arr) {
         swap(arr[idx1], arr[idx2]);
     }
 }
-// Array Types
-void generateArray(vector<int>& arr, int type) {
-    int n = arr.size();
 
+void generateArray(int arr[], int n, int type) {
     switch(type) {
         case 1: // Array already sorted (in-order)
             for (int i = 0; i < n; ++i) {
@@ -147,7 +133,7 @@ void generateArray(vector<int>& arr, int type) {
             for (int i = 0; i < n; ++i) {
                 arr[i] = i + 1;
             }
-            shuffleTenPercent(arr);
+            shuffleTenPercent(arr, n);
             break;
         case 3: // Array completely shuffled (random numbers)
             for (int i = 0; i < n; ++i) {
@@ -162,8 +148,7 @@ void generateArray(vector<int>& arr, int type) {
     }
 }
 
-void printArray(const vector<int>& arr, int numColumns, int numRows) {
-    int n = arr.size();
+void printArray(const int arr[], int n, int numColumns, int numRows) {
     int perRow = numColumns;
     int rowCount = 0;
 
@@ -178,7 +163,6 @@ void printArray(const vector<int>& arr, int numColumns, int numRows) {
     }
     cout << endl;
 }
-
 
 void startOfCode(){
     cout<<string(70, '*')<<endl;
@@ -228,7 +212,6 @@ void sizeMenu(int& arraySize, bool& returnToAlgorithmMenu) {
 }
 
 int main() {
-    vector<int> arr;
     int arraySize; 
     int chosenAlgorithm;
     const int arrayTypes[] = {1, 2, 3, 4}; // Array Types
@@ -252,7 +235,6 @@ int main() {
             if (returnToAlgorithmMenu) {
                 break;
             }
-
             switch(arraySize)
             {
                 case 1: arraySize=10000;
@@ -262,68 +244,54 @@ int main() {
                 case 3: arraySize=1000000;
                         break;
             }
-            
             for (int type : arrayTypes) {
-                arr.resize(arraySize);
-                generateArray(arr, type);
+                int* arr = new int[arraySize];
+                generateArray(arr, arraySize, type);
                 spacer();
                 cout << "Array Size: " << arraySize << ", Sorting Algorithm: " << chosenAlgorithm << ", Array Type: " << type << endl;
                 cout << "Before Sorting:" << endl;
-                printArray(arr, 10, 10);
+                printArray(arr, arraySize, 10, 10);
 
-                vector<int> copy = arr;
+                int* copy = new int[arraySize];
+                for (int i = 0; i < arraySize; ++i) {
+                    copy[i] = arr[i];
+                }
                 start_time = clock();             
 
                 switch(chosenAlgorithm) {
                     case 1: //  Insertion Sort            
                         cout << "Using Insertion Sort:" << endl;
-                        start_time = clock(); 
-                        insertionSort(copy);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        insertionSort(copy, arraySize);
                         break; 
                     case 2: // Selection Sort
                         cout << "Using Selection Sort:" << endl;
-                        start_time = clock(); 
-                        selectionSort(copy);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl; 
+                        selectionSort(copy, arraySize);
                         break;
                     case 3: // Bubble Sort
                         cout << "Using Bubble Sort:" << endl;
-                        start_time = clock(); 
-                        bubbleSort(copy);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        bubbleSort(copy, arraySize);
                         break;
                     case 4: // Quick Sort
                         cout << "Using Quick Sort:" << endl;
-                        start_time = clock(); 
-                        quickSort(copy, 0, copy.size() - 1);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        quickSort(copy, 0, arraySize - 1);
                         break;
                     case 5: // Merge Sort
                         cout << "Using Merge Sort:" << endl;
-                        start_time = clock(); 
-                        mergeSort(copy, 0, copy.size() - 1);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        mergeSort(copy, 0, arraySize - 1);
                         break;
                 }
                 end_time = clock(); 
 
                 cout << "After Sorting:" << endl;
-                printArray(copy, 10, 10);
+                printArray(copy, arraySize, 10, 10);
 
                 cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl; 
 
-                arr.clear();
+                delete[] arr;
+                delete[] copy;
             }
         }
     }
     endOfCode();
     return 0;
 }
-
-
