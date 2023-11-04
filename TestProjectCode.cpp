@@ -252,6 +252,7 @@ int main() {
             if (returnToAlgorithmMenu) {
                 break;
             }
+
             switch(arraySize)
             {
                 case 1: arraySize=10000;
@@ -261,6 +262,7 @@ int main() {
                 case 3: arraySize=1000000;
                         break;
             }
+            
             for (int type : arrayTypes) {
                 arr.resize(arraySize);
                 generateArray(arr, type);

@@ -248,38 +248,44 @@ int main()
                 printArray(arr, 10, 10);
 
                 vector<int> copy = arr; // Create a copy of the original array for each sorting algorithm
-            start_time = clock();             
+                         
 
                 switch(algorithm) 
                 {
                     case 1: // Insertion Sort
                         cout << "Using Insertion Sort:" << endl;
+                        start_time = clock();
                         insertionSort(copy);
+                        end_time = clock();
                         break;
                     case 2: // Selection Sort
                         cout << "Using Selection Sort:" << endl;
+                        start_time = clock();
                         selectionSort(copy);
+                        end_time = clock();
                         break;
                     case 3: // Bubble Sort
                         cout << "Using Bubble Sort:" << endl;
+                        start_time = clock();
                         bubbleSort(copy);
+                        end_time = clock();
                         break;
                     case 4: // Quick Sort
                         cout << "Using Quick Sort:" << endl;
+                        start_time = clock();
                         quickSort(copy, 0, copy.size() - 1);
+                        end_time = clock();
                         break;
                     case 5: // Merge Sort
                         cout << "Using Merge Sort:" << endl;
+                        start_time = clock();
                         mergeSort(copy, 0, copy.size() - 1);
+                        end_time = clock();
                         break;
                 }
-
-            end_time = clock(); 
-
                 cout << "After Sorting:" << endl;
                 printArray(copy, 10, 10);
-
-        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl; 
+                cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
 
                 arr.clear();
             }
