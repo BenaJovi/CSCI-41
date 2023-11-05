@@ -1,6 +1,6 @@
 /*  Author: Jovani Benavides
  *  Course: CSCI-41
- *  Purpose: 
+ *  Purpose: Project 1: Sorting Algorithm
  *  
  */
 
@@ -12,7 +12,7 @@
 #include <iomanip>
 using namespace std;
 
-// Sorting Algorithms
+//*************** Sorting Algorithms***************  
 void insertionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 1; i < n; ++i) {
@@ -25,7 +25,7 @@ void insertionSort(vector<int>& arr) {
         arr[j + 1] = key;
     }
 }
-
+//***************Selection Sort Function*************** 
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n-1; i++) {
@@ -37,7 +37,7 @@ void selectionSort(vector<int>& arr) {
         swap(arr[minIndex], arr[i]);
     }
 }
-
+//***************Bubble Sort Function ***************
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
     for (int i = 0; i < n-1; i++) {
@@ -48,7 +48,7 @@ void bubbleSort(vector<int>& arr) {
         }
     }
 }
-
+//*************** Partition Function For Quick Sort***************
 int partition(vector<int>& arr, int low, int high) {
     int pivot = arr[high];
     int i = (low - 1);
@@ -61,7 +61,7 @@ int partition(vector<int>& arr, int low, int high) {
     swap(arr[i + 1], arr[high]);
     return (i + 1);
 }
-
+//***************Quick Sort Function ***************
 void quickSort(vector<int>& arr, int low, int high) {
     if (low < high) {
         int pi = partition(arr, low, high);
@@ -69,19 +69,16 @@ void quickSort(vector<int>& arr, int low, int high) {
         quickSort(arr, pi + 1, high);
     }
 }
-
+//*************** Merge Function For Merge Sort ***************
 void merge(vector<int>& arr, int left, int mid, int right) {
     int i, j, k;
     int n1 = mid - left + 1;
     int n2 = right - mid;
-
     vector<int> L(n1), R(n2);
-
     for (i = 0; i < n1; i++)
         L[i] = arr[left + i];
     for (j = 0; j < n2; j++)
         R[j] = arr[mid + 1 + j];
-
     i = 0;
     j = 0;
     k = left;
@@ -96,20 +93,18 @@ void merge(vector<int>& arr, int left, int mid, int right) {
         }
         k++;
     }
-
     while (i < n1) {
         arr[k] = L[i];
         i++;
         k++;
     }
-
     while (j < n2) {
         arr[k] = R[j];
         j++;
         k++;
     }
 }
-
+//*************** Merge Sort Function ***************
 void mergeSort(vector<int>& arr, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
@@ -120,6 +115,8 @@ void mergeSort(vector<int>& arr, int left, int right) {
         merge(arr, left, mid, right);
     }
 }
+//*************** Array Types ***************
+//*************** Array Sorted with 10% Shuffle ***************
 void shuffleTenPercent(vector<int>& arr) {
     int n = arr.size();
     int shuffleCount = n * 0.1;
@@ -133,7 +130,7 @@ void shuffleTenPercent(vector<int>& arr) {
         swap(arr[idx1], arr[idx2]);
     }
 }
-// Array Types
+//*************** Switch Statement for Array Types ***************
 void generateArray(vector<int>& arr, int type) {
     int n = arr.size();
 
@@ -151,7 +148,7 @@ void generateArray(vector<int>& arr, int type) {
             break;
         case 3: // Array completely shuffled (random numbers)
             for (int i = 0; i < n; ++i) {
-                arr[i] = rand() % 1000; // You can adjust the range of random numbers here
+                arr[i] = rand() % 1000; 
             }
             break;
         case 4: // Array in reverse order
@@ -161,16 +158,15 @@ void generateArray(vector<int>& arr, int type) {
             break;
     }
 }
-
+//*************** Print Array Function in a 10x10. *************** 
 void printArray(const vector<int>& arr, int numColumns, int numRows) {
     int n = arr.size();
     int perRow = numColumns;
     int rowCount = 0;
 
     for (int i = 0; i < min(n, numColumns * numRows); ++i) {
-        cout << setw(7) << arr[i]; // Set a fixed width of 4 for each element
+        cout << setw(7) << arr[i]; // Set a fixed width of 7 for each element
         rowCount++;
-
         if (rowCount == perRow) {
             cout << endl;
             rowCount = 0;
@@ -179,12 +175,13 @@ void printArray(const vector<int>& arr, int numColumns, int numRows) {
     cout << endl;
 }
 
+//*************** Display Functions ***************
 
 void startOfCode(){
     cout<<string(70, '*')<<endl;
-    cout<<"This is the start of the code where each sorting algortihm\n";
-    cout<<"will be used in 4 different array types and the array size\n";
-    cout<<"will be selected by the user."<<endl;
+    cout<<"This is the start of the code. Each sorting algortihm\n";
+    cout<<"will be used in 4 different array types and 3 array sizes.\n";
+    cout<<"Sorting algorithm and array size will be selected by the user."<<endl;
     cout<<string(70, '*')<<endl;
     return;
 }
@@ -200,7 +197,7 @@ void endOfCode(){
     cout<<string(70, '*')<<endl;
     return;
 }
-
+//*************** Two Display Different Display Menus ***************
 void algorithmMenu(int& chosenAlgorithm) {
     cout << "\nSorting Algorithm Menu:\n";
     cout << "1. Insertion Sort\n";
@@ -226,20 +223,21 @@ void sizeMenu(int& arraySize, bool& returnToAlgorithmMenu) {
         returnToAlgorithmMenu = true;
     }
 }
-
+//*************** Main ***************
 int main() {
-    vector<int> arr;
-    int arraySize; 
-    int chosenAlgorithm;
-    const int arrayTypes[] = {1, 2, 3, 4}; // Array Types
-    clock_t start_time, end_time;
 
-    startOfCode();
+    vector<int> arr; // Initialize array using vectors
+    int arraySize; // Array size
+    int chosenAlgorithm; // Algorithm chosen by user
+    const int arrayTypes[] = {1, 2, 3, 4}; // Array Types (used in For each Loop)
+    clock_t start_time, end_time; // Using <Ctime> to initialize time functions
+
+    startOfCode(); // Displays header at the start of the program
 
     while (true) {
-        algorithmMenu(chosenAlgorithm);
+        algorithmMenu(chosenAlgorithm); // Prompts the user with a display menu for which algorithm to choose
 
-        if (chosenAlgorithm == 0) {
+        if (chosenAlgorithm == 0) { // Allows the user to exit the program when they want by selecting 0.
             endOfCode();
             return 0;
         }
@@ -247,13 +245,13 @@ int main() {
         bool returnToAlgorithmMenu = false;
 
         while (!returnToAlgorithmMenu) {
-            sizeMenu(arraySize, returnToAlgorithmMenu);
+            sizeMenu(arraySize, returnToAlgorithmMenu); // Prompts the user witha display menu for the array size. 
 
-            if (returnToAlgorithmMenu) {
+            if (returnToAlgorithmMenu) { // Allows the user to return to the previous menu.
                 break;
             }
 
-            switch(arraySize)
+            switch(arraySize) // Switch statement for array sizes.
             {
                 case 1: arraySize=10000;
                         break;
@@ -262,66 +260,59 @@ int main() {
                 case 3: arraySize=1000000;
                         break;
             }
-            
-            for (int type : arrayTypes) {
+            // This for loop will generate a WARNING due to it being a C++11 extenstion but program will still run.
+            for (int type : arrayTypes) { // this is a range-based for loop that will iterate through each arrayType. 1-4
                 arr.resize(arraySize);
                 generateArray(arr, type);
                 spacer();
                 cout << "Array Size: " << arraySize << ", Sorting Algorithm: " << chosenAlgorithm << ", Array Type: " << type << endl;
                 cout << "Before Sorting:" << endl;
-                printArray(arr, 10, 10);
+                printArray(arr, 10, 10); // Outputs the array in a 10x10 Format
 
-                vector<int> copy = arr;
-                start_time = clock();             
+                vector<int> copy = arr; // Copy is a Algorithm function that copies the elements.
 
-                switch(chosenAlgorithm) {
+                // Using the for each loop, the user input for chosenAlgorithm will pass through each case in this switch statement.
+                switch(chosenAlgorithm) { 
                     case 1: //  Insertion Sort            
                         cout << "Using Insertion Sort:" << endl;
-                        start_time = clock(); 
-                        insertionSort(copy);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        start_time = clock(); // Starts the clock for the sorting algorithm.
+                        insertionSort(copy); // Copies the Unsorted array and sorts the array.
+                        end_time = clock(); // Ends the clock for the sorting algorithm.
                         break; 
                     case 2: // Selection Sort
                         cout << "Using Selection Sort:" << endl;
-                        start_time = clock(); 
-                        selectionSort(copy);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl; 
+                        start_time = clock(); // Starts the clock for the sorting algorithm.
+                        selectionSort(copy); // Copies the Unsorted array and sorts the array.
+                        end_time = clock(); // Ends the clock for the sorting algorithm.
                         break;
                     case 3: // Bubble Sort
                         cout << "Using Bubble Sort:" << endl;
-                        start_time = clock(); 
-                        bubbleSort(copy);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        start_time = clock(); // Starts the clock for the sorting algorithm.
+                        bubbleSort(copy); // Copies the Unsorted array and sorts the array.
+                        end_time = clock(); // Ends the clock for the sorting algorithm.
                         break;
                     case 4: // Quick Sort
                         cout << "Using Quick Sort:" << endl;
-                        start_time = clock(); 
-                        quickSort(copy, 0, copy.size() - 1);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        start_time = clock(); // Starts the clock for the sorting algorithm.
+                        quickSort(copy, 0, copy.size() - 1); // Copies the Unsorted array and sorts the array.
+                        end_time = clock(); // Ends the clock for the sorting algorithm.
                         break;
                     case 5: // Merge Sort
                         cout << "Using Merge Sort:" << endl;
-                        start_time = clock(); 
-                        mergeSort(copy, 0, copy.size() - 1);
-                        end_time = clock();
-                        cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;
+                        start_time = clock(); // Starts the clock for the sorting algorithm.
+                        mergeSort(copy, 0, copy.size() - 1); // Copies the Unsorted array and sorts the array.
+                        end_time = clock(); // Ends the clock for the sorting algorithm.
                         break;
                 }
-                end_time = clock(); 
-
                 cout << "After Sorting:" << endl;
                 printArray(copy, 10, 10);
 
+                // Out puts the time taken for the chosen algorithm using the array types.
                 cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl; 
-
-                arr.clear();
+                arr.clear(); // Memort managment
             }
         }
     }
-    endOfCode();
+    endOfCode(); // Prompts the user that the program has ended 
     return 0;
 }

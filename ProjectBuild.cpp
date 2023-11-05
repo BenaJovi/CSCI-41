@@ -229,7 +229,7 @@ int main()
    
     vector<int> arr;
     int arraySize; 
-    const int sortingAlgorithms[] = {1, 2, 3, 4, 5}; // Sorting Algorithms
+    const int sortingAlgorithms[] = {3}; // Sorting Algorithms
     const int arrayTypes[] = {1, 2, 3, 4}; // Array Types
     clock_t start_time, end_time; 
  
@@ -283,6 +283,7 @@ int main()
                         end_time = clock();
                         break;
                 }
+                
                 cout << "After Sorting:" << endl;
                 printArray(copy, 10, 10);
                 cout << "Time taken: " << (double)(end_time - start_time) / CLOCKS_PER_SEC << " seconds" << endl;

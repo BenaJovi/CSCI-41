@@ -116,11 +116,11 @@ void printArray(int arr[], int n)
 
 int main()
 {
-    int size = 6; // creates an a array with size of ten using randomly generated numbers
+    int size = 100; // creates an a array with size of ten using randomly generated numbers
     int arr[size];
     cout << "Array size is set to 6" << endl;
     for (int i = 0; i < size; i++)
-        arr[i] = rand() % 100;
+        arr[i] = rand() % 1000;
     cout << "Elements of the array:" << endl;
     for (int i = 0; i < size; i++)
         cout << "Elements no " << i + 1 << ":" << arr[i] << endl;
