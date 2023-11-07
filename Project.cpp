@@ -1,6 +1,6 @@
 /*  Author: Jovani Benavides
  *  Course: CSCI-41
- *  Purpose: Project 1: Sorting Algorithm
+ *  Purpose: Project 1: Sorting Algorithm Benchmarks
  *  
  */
 
@@ -116,6 +116,7 @@ void mergeSort(vector<int>& arr, int left, int right) {
     }
 }
 //*************** Array Types ***************
+
 //*************** Array Sorted with 10% Shuffle ***************
 void shuffleTenPercent(vector<int>& arr) {
     int n = arr.size();
@@ -176,12 +177,11 @@ void printArray(const vector<int>& arr, int numColumns, int numRows) {
 }
 
 //*************** Display Functions ***************
-
 void startOfCode(){
     cout<<string(70, '*')<<endl;
-    cout<<"This is the start of the code. Each sorting algortihm\n";
-    cout<<"will be used in 4 different array types and 3 array sizes.\n";
-    cout<<"Sorting algorithm and array size will be selected by the user."<<endl;
+    cout<<"  This is the start of the code. Each sorting algortihm"<<endl;
+    cout<<"  will be used in 4 different array types and 3 array sizes."<<endl;
+    cout<<"  Sorting algorithm and array size will be selected by the user."<<endl;
     cout<<string(70, '*')<<endl;
     return;
 }
@@ -214,7 +214,8 @@ void sizeMenu(int& arraySize, bool& returnToAlgorithmMenu) {
     cout << "\nArray Size Menu:\n";
     cout << "1. Array Size 10000\n";
     cout << "2. Array Size 100000\n";
-    cout << "3. Array Size 1000000\n";
+    cout << "3. Array Size 300000\n"; // Updated after announcement to test a smaller array size than 1 millon.
+    cout << "4. Array Size 1 million\n";
     cout << "0. Return to Algorithm Menu\n";
     cout << "Enter your choice: ";
     cin >> arraySize;
@@ -257,8 +258,9 @@ int main() {
                         break;
                 case 2: arraySize=100000;
                         break;
-                case 3: arraySize=1000000;
+                case 3: arraySize=300000;// Updated after announcement to test a smaller array size than 1 millon.
                         break;
+                case 4: arraySize=1000000;
             }
             // This for loop will generate a WARNING due to it being a C++11 extenstion but program will still run.
             for (int type : arrayTypes) { // this is a range-based for loop that will iterate through each arrayType. 1-4
