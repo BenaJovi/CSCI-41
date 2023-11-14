@@ -1,3 +1,8 @@
+/*  Author: Jovani Benavides
+ *  Course: CSCI-41
+ *  
+ *  
+ */
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
@@ -47,6 +52,34 @@ public:
         delete[] heap;
     }
 
+    void buildHeapFromArray(int arr[], int size) {
+        for (int i = 0; i < size; ++i) {
+            heap[i] = arr[i];
+            heapifyUp(i);
+        }
+        this->size = size;
+    }
+
+    void displayHeap() {
+        cout << "Heap: ";
+        for (int i = 0; i < size; ++i) {
+            cout << heap[i] << " ";
+        }
+        cout << endl;
+    }
+
+    void heapifyUpFromArray() {
+        for (int i = size - 1; i > 0; --i) {
+            heapifyUp(i);
+        }
+    }
+
+    void heapifyDownFromArray() {
+        for (int i = size / 2 - 1; i >= 0; --i) {
+            heapifyDown(i);
+        }
+    }
+
     void insert(int value) {
         if (size == capacity) {
             cout << "Heap is full!" << endl;
@@ -66,97 +99,46 @@ public:
         heap[0] = heap[--size];
         heapifyDown(0);
     }
-
-    void displayHeap() {
-        cout << "Heap: ";
-        for (int i = 0; i < size; ++i) {
-            cout << heap[i] << " ";
-        }
-        cout << endl;
-    }
-
-    void heapifyUpFromArray(int arr[], int size) {
-        for (int i = 1; i < size; ++i) {
-            int index = i;
-            int parent = (index - 1) / 2;
-            while (index > 0 && arr[parent] < arr[index]) {
-                swap(arr[parent], arr[index]);
-                index = parent;
-                parent = (index - 1) / 2;
-            }
-        }
-    }
-
-    void heapifyDownFromArray(int arr[], int size, int index) {
-        int largest = index;
-        int leftChild = 2 * index + 1;
-        int rightChild = 2 * index + 2;
-
-        if (leftChild < size && arr[leftChild] > arr[largest]) {
-            largest = leftChild;
-        }
-
-        if (rightChild < size && arr[rightChild] > arr[largest]) {
-            largest = rightChild;
-        }
-
-        if (largest != index) {
-            swap(arr[index], arr[largest]);
-            heapifyDownFromArray(arr, size, largest);
-        }
-    }
 };
 
 int main() {
-    // Build a Max heap of random numbers
-    srand(time(0));
-    MaxHeap maxHeap(10);
+    const int arraySize = 10;
+    int data[arraySize];
 
-    cout << "Inserting random numbers into the heap: ";
-    for (int i = 0; i < 10; ++i) {
-        int randomNumber = rand() % 100;
-        cout << randomNumber << " ";
-        maxHeap.insert(randomNumber);
+    cout << "Inserting random numbers into the array: ";
+    for (int i = 0; i < arraySize; ++i) {
+        data[i] = rand() % 10;
+        cout << data[i] << " ";
     }
     cout << endl;
 
-    // Display the Max heap
+    MaxHeap maxHeap(arraySize);
+
+    // Build Max heap from the random array
+    maxHeap.buildHeapFromArray(data, arraySize);
+    cout << "Max heap after building from the array: ";
     maxHeap.displayHeap();
 
-    // Perform deletion
-    maxHeap.removeMax();
-    cout << "After deletion: ";
-    maxHeap.displayHeap();
-
-    // Perform insertion
-    int newValue = 75;
+    // Perform insertion on the Max heap
+    int newValue = 50;
     maxHeap.insert(newValue);
-    cout << "After insertion of " << newValue << ": ";
+    cout << "Max heap after insertion of " << newValue <<endl;
     maxHeap.displayHeap();
 
-    // Perform heapify operations on a given array
-    int arrayToHeapify[] = {30, 20, 10, 15, 25, 5, 40, 35};
-    int arraySize = sizeof(arrayToHeapify) / sizeof(arrayToHeapify[0]);
+    // Perform deletion on the Max heap
+    maxHeap.removeMax();
+    cout << "Max heap after deletion: ";
+    maxHeap.displayHeap();
 
-    cout << "Original array: ";
-    for (int i = 0; i < arraySize; ++i) {
-        cout << arrayToHeapify[i] << " ";
-    }
-    cout << endl;
+    // Perform heapify up on the Max heap
+    maxHeap.heapifyUpFromArray();
+    cout << "Max heap after heapify up: ";
+    maxHeap.displayHeap();
 
-    maxHeap.heapifyUpFromArray(arrayToHeapify, arraySize);
-    cout << "Array after heapify up: ";
-    for (int i = 0; i < arraySize; ++i) {
-        cout << arrayToHeapify[i] << " ";
-    }
-    cout << endl;
-
-    maxHeap.heapifyDownFromArray(arrayToHeapify, arraySize, 0);
-    cout << "Array after heapify down: ";
-    for (int i = 0; i < arraySize; ++i) {
-        cout << arrayToHeapify[i] << " ";
-    }
-    cout << endl;
+    // Perform heapify down on the Max heap
+    maxHeap.heapifyDownFromArray();
+    cout << "Max heap after heapify down: ";
+    maxHeap.displayHeap();
 
     return 0;
 }
