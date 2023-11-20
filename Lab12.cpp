@@ -1,110 +1,169 @@
 /*  Author: Jovani Benavides
  *  Course: CSCI-41
- *  
- *  
+ *
+ *
  */
 #include <iostream>
 using namespace std;
 
-struct node {
-	int key;
-	struct node *left, *right;
+class BSTNode {
+public:
+    int key;
+    BSTNode* left;
+    BSTNode* right;
+
+    // Constructors
+    BSTNode() : key(0), left(nullptr), right(nullptr) {}
+    BSTNode(int value) : key(value), left(nullptr), right(nullptr) {}
+
+    // Destructor
+    ~BSTNode() {}
+
+    // Check if the node is a leaf
+    bool isLeaf() {
+        return (left == nullptr && right == nullptr);
+    }
+
+    // Get the number of children
+    int getNumChildren() {
+        int count = 0;
+        if (left != nullptr) count++;
+        if (right != nullptr) count++;
+        return count;
+    }
+
+    // Get the parent of a given child node
+    static BSTNode* Parent(BSTNode* root, BSTNode* child) {
+        if (root == nullptr || child == nullptr || root == child)
+            return nullptr;
+
+        if ((root->left == child) || (root->right == child))
+            return root;
+
+        if (child->key < root->key)
+            return Parent(root->left, child);
+        else
+            return Parent(root->right, child);
+    }
 };
 
-// A utility function to create a new BST node
-struct node* newNode(int item)
-{
-	struct node* temp
-		= new struct node;
-	temp->key = item;
-	temp->left = temp->right = NULL;
-	return temp;
+// Recursive search in BST
+bool SearchNodeREC(BSTNode* root, int data) {
+    if (root == nullptr)
+        return false;
+
+    if (data == root->key)
+        return true;
+    else if (data < root->key)
+        return SearchNodeREC(root->left, data);
+    else
+        return SearchNodeREC(root->right, data);
 }
 
-// A utility function to insert
-// a new node with given key in BST
-struct node* insert(struct node* node, int key)
-{
-	// If the tree is empty, return a new node
-	if (node == NULL)
-		return newNode(key);
-
-	// Otherwise, recur down the tree
-	if (key < node->key)
-		node->left = insert(node->left, key);
-	else if (key > node->key)
-		node->right = insert(node->right, key);
-
-	// Return the (unchanged) node pointer
-	return node;
+// Iterative search in BST
+bool SearchNodeITE(BSTNode* root, int data) {
+    while (root != nullptr) {
+        if (data == root->key)
+            return true;
+        else if (data < root->key)
+            root = root->left;
+        else
+            root = root->right;
+    }
+    return false;
 }
 
-// Utility function to search a key in a BST
-struct node* search(struct node* root, int key)
-{
-	// Base Cases: root is null or key is present at root
-	if (root == NULL || root->key == key)
-		return root;
+// Recursive insert in BST
+void InsertNodeREC(BSTNode** root, int data) {
+    if (*root == nullptr) {
+        *root = new BSTNode(data);
+        return;
+    }
 
-	// Key is greater than root's key
-	if (root->key < key)
-		return search(root->right, key);
-
-	// Key is smaller than root's key
-	return search(root->left, key);
-}
-/*void BSTNodeLeaf(){
-
+    if (data < (*root)->key)
+        InsertNodeREC(&((*root)->left), data);
+    else if (data > (*root)->key)
+        InsertNodeREC(&((*root)->right), data);
 }
 
-int numberOfChildren(){
+// Iterative insert in BST
+void InsertNodeITE(BSTNode** root, int data) {
+    if (*root == nullptr) {
+        *root = new BSTNode(data);
+        return;
+    }
 
-} 
-
-bool SearchBSTNodeREC(BSTBSTNode* root, int data){
-
+    BSTNode* current = *root;
+    while (true) {
+        if (data < current->key) {
+            if (current->left == nullptr) {
+                current->left = new BSTNode(data);
+                return;
+            }
+            current = current->left;
+        } else if (data > current->key) {
+            if (current->right == nullptr) {
+                current->right = new BSTNode(data);
+                return;
+            }
+            current = current->right;
+        } else {
+            // If the key already exists, you can decide what to do (e.g., ignore or update the value)
+            return;
+        }
+    }
 }
 
+// Output information about the node
+void OutputNodeInfo(BSTNode* node) {
+    if (node == nullptr) {
+        cout << "Node: nullptr" << endl;
+        return;
+    }
 
-bool SearchBSTNodeITE(BSTBSTNode* root, int data){
+    cout << "Node: " << node->key << endl;
+    cout << "Is Leaf: " << (node->isLeaf() ? "Yes" : "No") << endl;
+    cout << "Number of Children: " << node->getNumChildren() << endl;
+}
 
-} // Iterative version
+int main() {
+    BSTNode* root = nullptr;
 
-void InsertBSTNodeREC(BSTBSTNode** root, int data){
+    // Insert nodes into the BST
+    InsertNodeREC(&root, 50);
+    InsertNodeREC(&root, 30);
+    InsertNodeITE(&root, 70);
+    InsertNodeITE(&root, 20);
+    
 
-} // Recursive version
+    // Output information about the nodes
+    cout << "Information about nodes after insertion:" << endl;
+    OutputNodeInfo(root);
+    OutputNodeInfo(root->left);
+    OutputNodeInfo(root->right);
+    OutputNodeInfo(root->left->left);
+    
 
-void InsertBSTNodeITE(BSTBSTNode** root, int data){
+    // Search for nodes in the BST
+    cout << "\nSearching for nodes:" << endl;
+    cout << "Search (Recursive): " << (SearchNodeREC(root, 60) ? "Found" : "Not Found") << endl;
+    cout << "Search (Recursive): " << (SearchNodeREC(root, 30) ? "Found" : "Not Found") << endl;
 
-} // Iterative version
+    cout << "Search (Iterative): " << (SearchNodeITE(root, 75) ? "Found" : "Not Found") << endl;
+    cout << "Search (Iterative): " << (SearchNodeITE(root, 20) ? "Found" : "Not Found") << endl;
 
-*/
-int main()
-{
-	struct node* root = NULL;
-	root = insert(root, 50);
-	insert(root, 30);
-	insert(root, 20);
-	insert(root, 40);
-	insert(root, 70);
-	insert(root, 60);
-	insert(root, 80);
 
-	// Key to be found
-	int key = 6;
+    // Insert additional nodes
+    InsertNodeITE(&root, 65);
 
-	// Searching in a BST
-	if (search(root, key) == NULL)
-		cout << key << " not found" << endl;
-	else
-		cout << key << " found" << endl;
+    // Output information about the nodes
+    cout << "\nInformation about nodes after additional insertions:" << endl;
+    OutputNodeInfo(root);
+    OutputNodeInfo(root->left);
+    OutputNodeInfo(root->right);
+    OutputNodeInfo(root->left->left);
+    OutputNodeInfo(root->left->right);
+    OutputNodeInfo(root->right->left);
 
-	key = 60;
-
-	// Searching in a BST
-	if (search(root, key) == NULL)
-		cout << key << " not found" << endl;
-	else
-		cout << key << " found" << endl;
-	return 0;
+    return 0;
 }
