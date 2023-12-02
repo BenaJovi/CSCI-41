@@ -108,7 +108,6 @@ void InsertNodeITE(BSTNode** root, int data) {
             }
             current = current->right;
         } else {
-            // If the key already exists, you can decide what to do (e.g., ignore or update the value)
             return;
         }
     }
@@ -143,9 +142,9 @@ int main() {
     OutputNodeInfo(root->right);
     OutputNodeInfo(root->left->left);
     
-
+    cout<<endl;
     // Search for nodes in the BST
-    cout << "\nSearching for nodes:" << endl;
+    cout << "Searching for nodes:" << endl;
     cout << "Search (Recursive): " << (SearchNodeREC(root, 60) ? "Found" : "Not Found") << endl;
     cout << "Search (Recursive): " << (SearchNodeREC(root, 30) ? "Found" : "Not Found") << endl;
 
@@ -164,6 +163,5 @@ int main() {
     OutputNodeInfo(root->left->left);
     OutputNodeInfo(root->left->right);
     OutputNodeInfo(root->right->left);
-
     return 0;
 }
