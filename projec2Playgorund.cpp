@@ -12,35 +12,36 @@ using namespace std;
 template<typename T>
 class BinaryTreeHeap {
 private:
-    vector<T> heap;
+    vector<T> heap; // Vector to store elements in the HEAP
 
-    void heapify(int i);
+    void heapify(int i); // Helper function to maintain HEAP 
 
 public:
-    void push(const T& value);
-    T pop();
-    size_t size() const;
+    void push(const T& value); // Add element to the HEAP
+    T pop(); // Remove top element from the HEAP
+    size_t size() const; // Current Size of HEAP
 
-    int computeHeight() const;
-    int computeLeaves() const;
-    bool lookup(const T& key) const;
-    bool descendant(const T& current, const T& aNode) const;
-    bool descendantHelper(int index, const T& current, const T& aNode) const;
-    vector<T> sameLevel(const T& targetValue) const;
-    void sameLevelHelper(int index, int targetIndex, int currentLevel, int targetLevel, vector<T>& result) const;
+    int computeHeight() const; // Function to get height of HEAP
+    int computeLeaves() const; // Function to get number of Leaves in HEAP
+    bool lookup(const T& key) const; // Function to check if Key exists within the HEAP
+    bool descendant(const T& current, const T& aNode) const; // Function to check if aNode is a Descendant of the Current Node
+    bool descendantHelper(int index, const T& current, const T& aNode) const; // Helper Function for Descendant 
+    vector<T> sameLevel(const T& targetValue) const; // Function that gets all elements on the same level
+    void sameLevelHelper(int index, int targetIndex, int currentLevel, int targetLevel, vector<T>& result) const; // Helper function for Same Level
 
 private:
-    int computeHeightHelper(int index) const;
-    int computeLeavesHelper(int index) const;
-    bool lookupHelper(int index, const T& key) const;
+    int computeHeightHelper(int index) const; // Helper Function for computing height  
+    int computeLeavesHelper(int index) const; // Helper Function for computing Leaves
+    bool lookupHelper(int index, const T& key) const; // Helper function for LookUp
 
 };
-
+// Function that maintains HEAP after adding an Element to HEAP
 template<typename T>
 int BinaryTreeHeap<T>::computeLeaves() const {
     return computeLeavesHelper(0);
 }
 
+// Function to add an element to the heap
 template<typename T>
 int BinaryTreeHeap<T>::computeLeavesHelper(int index) const {
     if (index >= heap.size()) {
@@ -373,11 +374,11 @@ int main() {
     cout << "Key " << keyToLookup << " found in longIntHeap: " << boolalpha << keyFound << "\n";
     measureTimeAndPrintBinaryTreeHeap(longIntVec, "long int");
 
-    std::vector<long int> sameLevelNodesLongInt = longIntHeap.sameLevel(currentNodeValue);
-    std::cout << "First 10 nodes at the same level as " << currentNodeValue << " in longIntHeap: ";
+    vector<long int> sameLevelNodesLongInt = longIntHeap.sameLevel(currentNodeValue);
+    cout << "First 10 nodes at the same level as " << currentNodeValue << " in longIntHeap: ";
     for (const auto& node : sameLevelNodesLongInt) {
-        std::cout << node << " ";
-    }std::cout << "\n";  
+        cout << node << " ";
+    }cout << "\n";  
     measureTimeAndPrintPriorityQueue(longLongIntVec, "long long int");
 
    bool isDescendantlongLongInt = longLongIntHeap.descendant(currentNodeValue, aNodeValue);
@@ -389,12 +390,12 @@ int main() {
      cout << "Key " << keyToLookup << " found in longLongIntHeap: " << boolalpha << keyFound << "\n";
      measureTimeAndPrintBinaryTreeHeap(longLongIntVec, "long long int");
 
-    std::vector<long long int> sameLevelNodesLongLongInt = longLongIntHeap.sameLevel(currentNodeValue);
-    std::cout << "First 10 nodes at the same level as " << currentNodeValue << " in longLongIntHeap: ";
+    vector<long long int> sameLevelNodesLongLongInt = longLongIntHeap.sameLevel(currentNodeValue);
+    cout << "First 10 nodes at the same level as " << currentNodeValue << " in longLongIntHeap: ";
     for (const auto& node : sameLevelNodesLongLongInt) {
-        std::cout << node << " ";
+        cout << node << " ";
     }
-    std::cout << "\n";
+    cout << "\n";
     measureTimeAndPrintPriorityQueue(floatVec, "float");
 
     bool isDescendantfloat = floatHeap.descendant(currentNodeValue, aNodeValue);
@@ -405,11 +406,11 @@ int main() {
      cout << "Key " << keyToLookup << " found in floatHeap: " << boolalpha << keyFound << "\n";
      measureTimeAndPrintBinaryTreeHeap(floatVec, "float");
 
-     std::vector<float> sameLevelNodesFloat = floatHeap.sameLevel(currentNodeValue);
-    std::cout << "First 10 nodes at the same level as " << currentNodeValue << " in floatHeap: ";
+     vector<float> sameLevelNodesFloat = floatHeap.sameLevel(currentNodeValue);
+    cout << "First 10 nodes at the same level as " << currentNodeValue << " in floatHeap: ";
     for (const auto& node : sameLevelNodesFloat) {
-    std::cout << node << " ";
-    }std::cout << "\n";
+    cout << node << " ";
+    }cout << "\n";
 
     measureTimeAndPrintPriorityQueue(doubleVec, "double");
     bool isDescendantdouble = doubleHeap.descendant(currentNodeValue, aNodeValue);
@@ -420,11 +421,11 @@ int main() {
      cout << "Key " << keyToLookup << " found in doubleHeap: " << boolalpha << keyFound << "\n";
      measureTimeAndPrintBinaryTreeHeap(doubleVec, "double");
 
-    std::vector<double> sameLevelNodesDouble = doubleHeap.sameLevel(currentNodeValue);
-    std::cout << "First 10 nodes at the same level as " << currentNodeValue << " in doubleHeap: ";
+    vector<double> sameLevelNodesDouble = doubleHeap.sameLevel(currentNodeValue);
+    cout << "First 10 nodes at the same level as " << currentNodeValue << " in doubleHeap: ";
     for (const auto& node : sameLevelNodesDouble) {
-    std::cout << node << " ";
-    } std::cout << "\n";
+    cout << node << " ";
+    } cout << "\n";
 
     measureTimeAndPrintPriorityQueue(longDoubleVec, "long double");
 
@@ -435,13 +436,13 @@ int main() {
      keyFound = longDoubleHeap.lookup(keyToLookup);
      cout << "Key " << keyToLookup << " found in longDoubleHeap: " << boolalpha << keyFound << "\n";
 
-     std::vector<long double> sameLevelNodesLongDouble = longDoubleHeap.sameLevel(currentNodeValue);
-    std::cout << "First 10 nodes at the same level as " << currentNodeValue << " in longDoubleHeap: ";
+     vector<long double> sameLevelNodesLongDouble = longDoubleHeap.sameLevel(currentNodeValue);
+    cout << "First 10 nodes at the same level as " << currentNodeValue << " in longDoubleHeap: ";
     for (const auto& node : sameLevelNodesLongDouble) {
-    std::cout << node << " ";
-    }std::cout << "\n";
-
+    cout << node << " ";
+    }cout << "\n";
+    
      measureTimeAndPrintBinaryTreeHeap(longDoubleVec, "long double");
-
+//done
     return 0;
 }
