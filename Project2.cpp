@@ -14,7 +14,9 @@ class BinaryTreeHeap {
 private:
     vector<T> heap;// Vector to store elements in the HEAP
 
-    void heapify(int i);// Helper function to maintain HEAP 
+    void heapifyUp(int i);// Helper function to maintain HEAP 
+    void heapifyDown(int index);
+    void swim(int index);
 
 public:
     void push(const T& value); // Add element to the HEAP
@@ -36,6 +38,31 @@ private:
     bool lookupHelper(int index, const T& key) const; // Helper function for LookUp
 
 };
+
+template<typename T>
+void BinaryTreeHeap<T>::heapifyDown(int index){ // heapifyDown function 
+    int left=2* index+1;
+    int right=2* index +2;
+    int smallest=index;
+
+    if (left<heap.size()&& heap[left]<heap[smallest]){
+        smallest=left;
+    }
+    if(right<heap.size()&& heap[right]< heap[smallest]){
+        smallest=right;
+    }
+    if(smallest!=index){
+        swap(heap[index],heap[smallest]);
+        heapifyDown(smallest);
+    }
+}
+template<typename T>
+void BinaryTreeHeap<T>::heapifyUp(int index){
+    while(index>0&& heap[index]<heap[(index-1)/2]){
+        swap(heap[index],heap[(index-1)/2]);
+        index=(index-1)/2;
+    }
+}
 // Function to count the number of leaves with the HEAP 
 template<typename T>
 int BinaryTreeHeap<T>::computeLeaves() const {
@@ -100,24 +127,16 @@ bool BinaryTreeHeap<T>::descendantHelper(int index, const T& current, const T& a
 
     return leftDescendant || rightDescendant;
 }
-// Functio to maintain HEAP 
+
+
 template<typename T>
-void BinaryTreeHeap<T>::heapify(int i) {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
-
-    if (left < heap.size() && heap[left] < heap[largest])
-        largest = left;
-
-    if (right < heap.size() && heap[right] < heap[largest])
-        largest = right;
-
-    if (largest != i) {
-        swap(heap[i], heap[largest]);
-        heapify(largest);
+void BinaryTreeHeap<T>::swim(int index){
+    while(index>0&& heap[index]<heap[(index-1)/2]){
+        swap(heap[index],heap[(index-1)/2]);
+        index=(index-1)/2;
     }
 }
+
 // Function to add an element to the HEAP
 template<typename T>
 void BinaryTreeHeap<T>::push(const T& value) {
@@ -278,7 +297,7 @@ void measureTimeAndPrintBinaryTreeHeap(const vector<T>& vec, const string& label
 int main() {
 
     const int N = 100000;
-    const int MAX_VALUE = 1000000; // Set the maximum random value
+    const int MAX_VALUE = 500000; // Set the maximum random value
 
     // Seed for random number generation
     srand(time(0));
@@ -421,9 +440,8 @@ int main() {
     cout << node << " ";
     } cout << "\n";
     cout << "\n";
-
     cout<<string(50, '-')<<"LONG DOUBLE SECTION:"<<string(50, '-')<<endl;
-    
+
 
     measureTimeAndPrintPriorityQueue(longDoubleVec, "long double");
     measureTimeAndPrintBinaryTreeHeap(longDoubleVec, "long double");
