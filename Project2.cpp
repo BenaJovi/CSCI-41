@@ -357,22 +357,35 @@ int main() {
     int keyToLookup = 100;
     bool keyFound;
 
+    int currentNodeValue =intVec[0];
+    long int currentNodeValueLong=longIntVec[1];
+    long long int currentNodeValueLongLong=longLongIntVec[2];
+    float currentNodeValueFloat=floatVec[3];
+    double currentNodeValueDouble=doubleVec[4];
+   long double currentNodeValueLongDouble=longDoubleVec[0];
 
-    int currentNodeValue = longIntVec[0];  // Use the first element as the current node value
-    int aNodeValue = longIntVec[50];       // Use an arbitrary element as aNode value
+    int aNodeValueInt = intVec[0];       // Use an arbitrary element as aNode value
+    long int aNodeValueLongInt = longIntVec[1];
+   long long int aNodeValueLongLongInt= longLongIntVec[2];
+    float aNodeValueFloat=floatVec[3];
+    double aNodeValueDouble = doubleVec[4];
+    long double aNodeValueLongDouble = longDoubleVec[5];
 
     // Record execution time and print the 100 smallest elements, height, and number of leaves for each implementation
     cout<<string(50, '-')<<"INT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(intVec, "int");
     measureTimeAndPrintBinaryTreeHeap(intVec, "int");
-    bool isDescendantInt = intHeap.descendant(currentNodeValue, aNodeValue);
-    cout <<"\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
+
+    bool isDescendantInt = intHeap.descendant(currentNodeValue, aNodeValueInt);
+    cout <<"\tIs " << aNodeValueInt << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantInt << "\n";
+
     keyFound = intHeap.lookup(keyToLookup);
     cout << "\tKey " << keyToLookup << " found in intHeap: " << boolalpha << keyFound << "\n";
-    vector<int> sameLevelNodesInt = intHeap.sameLevel(currentNodeValue);
+
+    auto sameLevelNodesint = intHeap.sameLevel(currentNodeValue);
     cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in intHeap: ";
-    for (const auto& node : sameLevelNodesInt)
+    for (const auto& node : sameLevelNodesint)
         {cout << node << " ";
         }
     cout<<"\n";
@@ -381,15 +394,17 @@ int main() {
     cout<<string(50, '-')<<"LONG INT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(longIntVec, "long int");
     measureTimeAndPrintBinaryTreeHeap(longIntVec,"long int");
-    bool isDescendantlongInt = longIntHeap.descendant(currentNodeValue, aNodeValue);
-    cout << "\tIs " << aNodeValue << " a descendant of the current node in longIntHeap? "
+
+    bool isDescendantlongInt = longIntHeap.descendant(currentNodeValueLong, aNodeValueLongInt);
+    cout << "\tIs " << aNodeValueLongInt << " a descendant of the current node in longIntHeap? "
               << boolalpha << isDescendantlongInt << "\n";
 
      keyFound = longIntHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in longIntHeap: " << boolalpha << keyFound << "\n";
-    vector<long int> sameLevelNodesLongInt = longIntHeap.sameLevel(currentNodeValue);
-    cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in longIntHeap: ";
-    for (const auto& node : sameLevelNodesLongInt) {
+
+auto sameLevelNodeslongInt = longIntHeap.sameLevel(currentNodeValueLong);
+    cout << "\tFirst 10 nodes at the same level as " << currentNodeValueLong << " in longIntHeap: ";
+    for (const auto& node : sameLevelNodeslongInt) {
         cout << node << " ";
     }
     cout << "\n";
@@ -398,14 +413,17 @@ int main() {
     cout<<string(50, '-')<<"LONG LONG INT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(longLongIntVec, "long long int");
     measureTimeAndPrintBinaryTreeHeap(longLongIntVec, "long long int");
-    bool isDescendantlongLongInt = longLongIntHeap.descendant(currentNodeValue, aNodeValue);
-    cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
+
+    bool isDescendantlongLongInt = longLongIntHeap.descendant(currentNodeValueLongLong, aNodeValueLongLongInt);
+    cout << "\tIs " << aNodeValueLongLongInt << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantlongLongInt << "\n";
+
      keyFound = longLongIntHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in longLongIntHeap: " << boolalpha << keyFound << "\n";
-    vector<long long int> sameLevelNodesLongLongInt = longLongIntHeap.sameLevel(currentNodeValue);
-    cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in longLongIntHeap: ";
-    for (const auto& node : sameLevelNodesLongLongInt) {
+
+auto sameLevelNodeslongLongInt = longLongIntHeap.sameLevel(currentNodeValueLongLong);
+    cout << "\tFirst 10 nodes at the same level as " << currentNodeValueLongLong << " in longLongIntHeap: ";
+    for (const auto& node : sameLevelNodeslongLongInt) {
         cout << node << " ";
     }
     cout << "\n";
@@ -414,14 +432,17 @@ int main() {
     cout<<string(50, '-')<<"FLOAT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(floatVec, "float");
     measureTimeAndPrintBinaryTreeHeap(floatVec, "float");
-    bool isDescendantfloat = floatHeap.descendant(currentNodeValue, aNodeValue);
-    cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
+
+    bool isDescendantfloat = floatHeap.descendant(currentNodeValueFloat, aNodeValueFloat);
+    cout << "\tIs " << aNodeValueFloat << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantfloat << "\n";
+
     keyFound = floatHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in floatHeap: " << boolalpha << keyFound << "\n";
-     vector<float> sameLevelNodesFloat = floatHeap.sameLevel(currentNodeValue);
-    cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in floatHeap: ";
-    for (const auto& node : sameLevelNodesFloat) {
+
+auto sameLevelNodesfloat = floatHeap.sameLevel(currentNodeValueFloat);
+    cout << "\tFirst 10 nodes at the same level as " << currentNodeValueFloat << " in floatHeap: ";
+    for (const auto& node : sameLevelNodesfloat) {
     cout << node << " ";
     }cout << "\n";
     cout << "\n";
@@ -429,32 +450,34 @@ int main() {
     cout<<string(50, '-')<<"DOUBLE SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(doubleVec, "double");
     measureTimeAndPrintBinaryTreeHeap(doubleVec, "double");
-    bool isDescendantdouble = doubleHeap.descendant(currentNodeValue, aNodeValue);
-    cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
+    bool isDescendantdouble = doubleHeap.descendant(currentNodeValueDouble, aNodeValueDouble);
+    cout << "\tIs " << aNodeValueDouble << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantdouble << "\n";
+
     keyFound = doubleHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in doubleHeap: " << boolalpha << keyFound << "\n";
-    vector<double> sameLevelNodesDouble = doubleHeap.sameLevel(currentNodeValue);
-    cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in doubleHeap: ";
+
+    auto sameLevelNodesDouble = doubleHeap.sameLevel(currentNodeValueDouble);
+    cout << "\tFirst 10 nodes at the same level as " << currentNodeValueDouble << " in doubleHeap: ";
     for (const auto& node : sameLevelNodesDouble) {
-    cout << node << " ";
-    } cout << "\n";
+        cout << node << " ";
+    }
     cout << "\n";
+
     cout<<string(50, '-')<<"LONG DOUBLE SECTION:"<<string(50, '-')<<endl;
-
-
     measureTimeAndPrintPriorityQueue(longDoubleVec, "long double");
     measureTimeAndPrintBinaryTreeHeap(longDoubleVec, "long double");
-    bool isDescendantlongDouble = longDoubleHeap.descendant(currentNodeValue, aNodeValue);
-    cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
+
+    bool isDescendantlongDouble = longDoubleHeap.descendant(currentNodeValueLongDouble, aNodeValueLongDouble);
+    cout << "\tIs " << aNodeValueLongDouble << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantlongDouble << "\n";
 
      keyFound = longDoubleHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in longDoubleHeap: " << boolalpha << keyFound << "\n";
 
-     vector<long double> sameLevelNodesLongDouble = longDoubleHeap.sameLevel(currentNodeValue);
-    cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in longDoubleHeap: ";
-    for (const auto& node : sameLevelNodesLongDouble) {
+auto sameLevelNodeslongDouble = longDoubleHeap.sameLevel(currentNodeValueLongDouble);
+    cout << "\tFirst 10 nodes at the same level as " << currentNodeValueLongDouble << " in longDoubleHeap: ";
+    for (const auto& node : sameLevelNodeslongDouble) {
     cout << node << " ";
     }cout << "\n";
     cout << "\n";
