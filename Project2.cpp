@@ -12,36 +12,36 @@ using namespace std;
 template<typename T>
 class BinaryTreeHeap {
 private:
-    vector<T> heap;
+    vector<T> heap;// Vector to store elements in the HEAP
 
-    void heapify(int i);
+    void heapify(int i);// Helper function to maintain HEAP 
 
 public:
-    void push(const T& value);
-    T pop();
-    size_t size() const;
+    void push(const T& value); // Add element to the HEAP
+    T pop();// Remove top element from the HEAP
+    size_t size() const;// Current Size of HEAP
 
-    int computeHeight() const;
-    int computeLeaves() const;
-    bool lookup(const T& key) const;
-    bool descendant(const T& current, const T& aNode) const;
-    bool descendantHelper(int index, const T& current, const T& aNode) const;
-    vector<T> sameLevel(const T& targetValue) const;
-    void sameLevelHelper(int index, int targetIndex, int currentLevel, int targetLevel, vector<T>& result) const;
+    int computeHeight() const;// Function to get height of HEAP
+    int computeLeaves() const;// Function to get number of Leaves in HEAP
+    bool lookup(const T& key) const;// Function to check if Key exists within the HEAP
+    bool descendant(const T& current, const T& aNode) const;// Function to check if aNode is a Descendant of the Current Node
+    bool descendantHelper(int index, const T& current, const T& aNode) const;// Helper Function for Descendant 
+    vector<T> sameLevel(const T& targetValue) const;// Function that gets all elements on the same level
+    void sameLevelHelper(int index, int targetIndex, int currentLevel, int targetLevel, vector<T>& result) const; // Helper function for Same Level
 
 
 private:
-    int computeHeightHelper(int index) const;
-    int computeLeavesHelper(int index) const;
-    bool lookupHelper(int index, const T& key) const;
+    int computeHeightHelper(int index) const; // Helper Function for computing height 
+    int computeLeavesHelper(int index) const; // Helper Function for computing Leaves
+    bool lookupHelper(int index, const T& key) const; // Helper function for LookUp
 
 };
-
+// Function to count the number of leaves with the HEAP 
 template<typename T>
 int BinaryTreeHeap<T>::computeLeaves() const {
     return computeLeavesHelper(0);
 }
-
+// Helper for computeLeaves Function 
 template<typename T>
 int BinaryTreeHeap<T>::computeLeavesHelper(int index) const {
     if (index >= heap.size()) {
@@ -57,12 +57,12 @@ int BinaryTreeHeap<T>::computeLeavesHelper(int index) const {
 
     return leftLeaves + rightLeaves;
 }
-
+// Function that checkss if a key exists in the HEAP 
 template<typename T>
 bool BinaryTreeHeap<T>::lookup(const T& key) const {
     return lookupHelper(0, key);
 }
-
+// Helper funciton for lookup Function
 template<typename T>
 bool BinaryTreeHeap<T>::lookupHelper(int index, const T& key) const {
     if (index >= heap.size()) {
@@ -79,12 +79,12 @@ bool BinaryTreeHeap<T>::lookupHelper(int index, const T& key) const {
         return lookupHelper(2 * index + 2, key); // Search in the right subtree
     }
 }
-
+// Function to check if a node is a descendant of the current node selected 
 template<typename T>
 bool BinaryTreeHeap<T>::descendant(const T& current, const T& aNode) const {
     return descendantHelper(0, current, aNode);
 }
-
+// Helper for descendant function
 template<typename T>
 bool BinaryTreeHeap<T>::descendantHelper(int index, const T& current, const T& aNode) const {
     if (index >= heap.size()) {
@@ -100,7 +100,7 @@ bool BinaryTreeHeap<T>::descendantHelper(int index, const T& current, const T& a
 
     return leftDescendant || rightDescendant;
 }
-
+// Functio to maintain HEAP 
 template<typename T>
 void BinaryTreeHeap<T>::heapify(int i) {
     int largest = i;
@@ -118,7 +118,7 @@ void BinaryTreeHeap<T>::heapify(int i) {
         heapify(largest);
     }
 }
-
+// Function to add an element to the HEAP
 template<typename T>
 void BinaryTreeHeap<T>::push(const T& value) {
     heap.push_back(value);
@@ -129,7 +129,7 @@ void BinaryTreeHeap<T>::push(const T& value) {
         index = (index - 1) / 2;
     }
 }
-
+// Function to remove the top element from the HEAP
 template<typename T>
 T BinaryTreeHeap<T>::pop() {
     if (heap.empty()) {
@@ -142,53 +142,46 @@ T BinaryTreeHeap<T>::pop() {
 
     return root;
 }
-
+// Function to get the current size of the HEAP
 template<typename T>
 size_t BinaryTreeHeap<T>::size() const {
     return heap.size();
 }
-
+// Function to compute the height of the HEAP 
 template<typename T>
 int BinaryTreeHeap<T>::computeHeight() const {
     if (heap.empty()) {
         return 0; // Height of an empty tree is 0
     }
-
     return computeHeightHelper(0) - 1;
 }
-
+// Helper for computeHeight function 
 template<typename T>
 int BinaryTreeHeap<T>::computeHeightHelper(int index) const {
     if (index >= heap.size()) {
         return 0; // Height of an empty tree is 0
     }
-
     int leftHeight = computeHeightHelper(2 * index + 1);
     int rightHeight = computeHeightHelper(2 * index + 2);
-
     return max(leftHeight, rightHeight) + 1;
 }
-
+// Helper for sameLevel Function 
 template<typename T>
 void BinaryTreeHeap<T>::sameLevelHelper(int index, int targetIndex, int currentLevel, int targetLevel, vector<T>& result) const {
     if (index >= heap.size() || currentLevel > targetLevel) {
         return;
     }
-
     if (currentLevel == targetLevel) {
         result.push_back(heap[index]);
     }
-
     sameLevelHelper(2 * index + 1, targetIndex, currentLevel + 1, targetLevel, result); // Traverse left subtree
-
     // Limit the result to 10 elements
     if (result.size() >= 10) {
         return;
     }
-
     sameLevelHelper(2 * index + 2, targetIndex, currentLevel + 1, targetLevel, result); // Traverse right subtree
 }
-
+// Function to check what element are on the same level as the selceted node
 template<typename T>
 vector<T> BinaryTreeHeap<T>::sameLevel(const T& targetValue) const {
     vector<T> result;
@@ -209,15 +202,13 @@ vector<T> BinaryTreeHeap<T>::sameLevel(const T& targetValue) const {
 int targetLevel = static_cast<int>(floor(log2(targetIndex + 1))); // Level of the target node
 
     sameLevelHelper(0, targetIndex, 0, targetLevel, result);
-
     // Limit the result to 10 elements
     if (result.size() > 10) {
         result.resize(10);
     }
-
     return result;
 }
-
+// A function that will print out the smallest 100 elements with the vector 
 template<typename T>
 void printFormattedOutput(const vector<T>& smallest, const string& label) {
     cout << "\tTop 100 smallest elements using " << label << ":\n";
@@ -229,7 +220,7 @@ void printFormattedOutput(const vector<T>& smallest, const string& label) {
     }
     cout << "\n";
 }
-
+// Function to calculate the time taken to create the heap using a vector 
 template<typename T>
 void measureTimeAndPrintPriorityQueue(const vector<T>& vec, const string& label) {
     priority_queue<T, vector<T>, greater<T> > pqArray(vec.begin(), vec.end());
@@ -246,7 +237,7 @@ void measureTimeAndPrintPriorityQueue(const vector<T>& vec, const string& label)
     cout << "\tTime taken for " << label << " with Heap using array/vector (Priority Queue): " << durationArray << " seconds\n";
     printFormattedOutput(smallestArray, label + " (Priority Queue)");
 }
-
+// Constructs the binary heap and will output the time taken, height,and the number of leaves.
 template<typename T>
 void measureTimeAndPrintBinaryTreeHeap(const vector<T>& vec, const string& label) {
     BinaryTreeHeap<T> heapTree;
@@ -286,14 +277,14 @@ void measureTimeAndPrintBinaryTreeHeap(const vector<T>& vec, const string& label
 
 int main() {
 
-    const int N = 10000;
-    const int MAX_VALUE = 10000; // Set the maximum random value
+    const int N = 100000;
+    const int MAX_VALUE = 1000000; // Set the maximum random value
 
     // Seed for random number generation
     srand(time(0));
 
 
-    // Generate 10,000 random numbers less than 100,000 for each type
+    // Generate 100,000 random numbers less than 1,000,000 for each type
     vector<int> intVec;
     vector<long int> longIntVec;
     vector<long long int> longLongIntVec;
@@ -343,7 +334,7 @@ int main() {
         longDoubleHeap.push(elem);
     }
 
-    // Example: Look up a key in each heap
+    // Look up a key in each heap
     int keyToLookup = 100;
     bool keyFound;
 
@@ -351,17 +342,15 @@ int main() {
     int currentNodeValue = longIntVec[0];  // Use the first element as the current node value
     int aNodeValue = longIntVec[50];       // Use an arbitrary element as aNode value
 
-
     // Record execution time and print the 100 smallest elements, height, and number of leaves for each implementation
+    cout<<string(50, '-')<<"INT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(intVec, "int");
     measureTimeAndPrintBinaryTreeHeap(intVec, "int");
     bool isDescendantInt = intHeap.descendant(currentNodeValue, aNodeValue);
     cout <<"\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantInt << "\n";
-
     keyFound = intHeap.lookup(keyToLookup);
     cout << "\tKey " << keyToLookup << " found in intHeap: " << boolalpha << keyFound << "\n";
-
     vector<int> sameLevelNodesInt = intHeap.sameLevel(currentNodeValue);
     cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in intHeap: ";
     for (const auto& node : sameLevelNodesInt)
@@ -369,18 +358,16 @@ int main() {
         }
     cout<<"\n";
     cout<<"\n";
-    //END OF INT
-    //START OF LONG INT
+
+    cout<<string(50, '-')<<"LONG INT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(longIntVec, "long int");
     measureTimeAndPrintBinaryTreeHeap(longIntVec,"long int");
     bool isDescendantlongInt = longIntHeap.descendant(currentNodeValue, aNodeValue);
-
     cout << "\tIs " << aNodeValue << " a descendant of the current node in longIntHeap? "
               << boolalpha << isDescendantlongInt << "\n";
 
      keyFound = longIntHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in longIntHeap: " << boolalpha << keyFound << "\n";
-
     vector<long int> sameLevelNodesLongInt = longIntHeap.sameLevel(currentNodeValue);
     cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in longIntHeap: ";
     for (const auto& node : sameLevelNodesLongInt) {
@@ -389,18 +376,14 @@ int main() {
     cout << "\n";
     cout << "\n";
 
-    //End of Long int
-    //START of LONG LONG INT
+    cout<<string(50, '-')<<"LONG LONG INT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(longLongIntVec, "long long int");
     measureTimeAndPrintBinaryTreeHeap(longLongIntVec, "long long int");
     bool isDescendantlongLongInt = longLongIntHeap.descendant(currentNodeValue, aNodeValue);
-
     cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantlongLongInt << "\n";
-
      keyFound = longLongIntHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in longLongIntHeap: " << boolalpha << keyFound << "\n";
-
     vector<long long int> sameLevelNodesLongLongInt = longLongIntHeap.sameLevel(currentNodeValue);
     cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in longLongIntHeap: ";
     for (const auto& node : sameLevelNodesLongLongInt) {
@@ -409,30 +392,24 @@ int main() {
     cout << "\n";
     cout << "\n";
 
-    //END OF LONG LONG INT
-    //START OF FLOAT
+    cout<<string(50, '-')<<"FLOAT SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(floatVec, "float");
     measureTimeAndPrintBinaryTreeHeap(floatVec, "float");
-
     bool isDescendantfloat = floatHeap.descendant(currentNodeValue, aNodeValue);
     cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantfloat << "\n";
     keyFound = floatHeap.lookup(keyToLookup);
      cout << "\tKey " << keyToLookup << " found in floatHeap: " << boolalpha << keyFound << "\n";
      vector<float> sameLevelNodesFloat = floatHeap.sameLevel(currentNodeValue);
-
     cout << "\tFirst 10 nodes at the same level as " << currentNodeValue << " in floatHeap: ";
     for (const auto& node : sameLevelNodesFloat) {
     cout << node << " ";
     }cout << "\n";
     cout << "\n";
 
-    //END OF FLOAT
-    //START OF DOUBLE
-
+    cout<<string(50, '-')<<"DOUBLE SECTION:"<<string(50, '-')<<endl;
     measureTimeAndPrintPriorityQueue(doubleVec, "double");
     measureTimeAndPrintBinaryTreeHeap(doubleVec, "double");
-
     bool isDescendantdouble = doubleHeap.descendant(currentNodeValue, aNodeValue);
     cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantdouble << "\n";
@@ -444,12 +421,13 @@ int main() {
     cout << node << " ";
     } cout << "\n";
     cout << "\n";
-//END OF  DOUBLE
-    //START OF LONG DOUBLE
+
+    cout<<string(50, '-')<<"LONG DOUBLE SECTION:"<<string(50, '-')<<endl;
+    
+
     measureTimeAndPrintPriorityQueue(longDoubleVec, "long double");
     measureTimeAndPrintBinaryTreeHeap(longDoubleVec, "long double");
-
- bool isDescendantlongDouble = longDoubleHeap.descendant(currentNodeValue, aNodeValue);
+    bool isDescendantlongDouble = longDoubleHeap.descendant(currentNodeValue, aNodeValue);
     cout << "\tIs " << aNodeValue << " a descendant of the current node in intHeap? "
               << boolalpha << isDescendantlongDouble << "\n";
 
@@ -462,9 +440,5 @@ int main() {
     cout << node << " ";
     }cout << "\n";
     cout << "\n";
-
-     //END OF LONG INT
-    //START OF FLOAT
-//done
     return 0;
 }
